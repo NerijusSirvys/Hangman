@@ -1,12 +1,12 @@
 import { Level } from "../interfaces/Level";
 
-export const UPDATE_IS_GUESS_CORRECT = "UPDATE_IS_GUESS_CORRECT";
-export const UPDATE_HIDDEN_SECRET = "UPDATE_HIDDEN_SECRET";
-export const LOAD_NEW_LEVEL = "LOAD_NEW_LEVEL";
-export const INCREMENT_FAILED_GUESES = "INCREMENT_FAILED_GUESES";
+const UPDATE_HIDDEN_SECRET = "UPDATE_HIDDEN_SECRET";
+const LOAD_NEW_LEVEL = "LOAD_NEW_LEVEL";
 
-export interface UpdateIsGuessCorrectAction {
-  type: typeof UPDATE_IS_GUESS_CORRECT;
+const SET_IS_LOADING = "SET_IS_LOADING";
+
+export interface SetIsLoading {
+  type: typeof SET_IS_LOADING;
   payload: boolean;
 }
 
@@ -20,12 +20,7 @@ export interface LoadNewLevelAction {
   payload: Level;
 }
 
-export interface IncrementFailedGuessesAction {
-  type: typeof INCREMENT_FAILED_GUESES;
-}
-
 export type LevelActionTypes =
-  | UpdateIsGuessCorrectAction
   | UpdateHiddenSecretAction
   | LoadNewLevelAction
-  | IncrementFailedGuessesAction;
+  | SetIsLoading;

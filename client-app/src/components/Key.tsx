@@ -5,6 +5,7 @@ import {
   incrementFailedGuess,
   updateHiddenSecret,
 } from "../actions/levelActions";
+
 import { AppState } from "../store/configStore";
 
 const updateSecret = (letter: string, letters: string, dispatch: any) => {

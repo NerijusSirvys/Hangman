@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import "./App.css";
 import { Header } from "./components/Header";
-import { Level } from "./components/Level";
+import { GameBoard } from "./components/GameBoard";
 import { SideBar } from "./components/SideBar";
 import axios from "axios";
 import { loadPlayer } from "./actions/playerActions";
+import { Player } from "./types/interfaces/Player";
 
 const getPlayerUrl = "https://localhost:5001/api/game/player";
 
@@ -14,7 +14,7 @@ function App() {
 
   useEffect(() => {
     axios
-      .get(getPlayerUrl)
+      .get<Player>(getPlayerUrl)
       .then((response) => dispatch(loadPlayer(response.data)));
   }, []);
 
@@ -23,7 +23,7 @@ function App() {
       <Header />
       <div className="main-grid">
         <main>
-          <Level />
+          <GameBoard />
         </main>
         <SideBar />
       </div>

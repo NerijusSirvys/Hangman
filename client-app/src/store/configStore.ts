@@ -1,6 +1,6 @@
 import levelReducer from "../state/reducers/level";
 import playerReducer from "../state/reducers/player";
-
+import gameReducer from "../state/reducers/game";
 import { combineReducers } from "redux";
 import { createStore } from "redux";
 import { compose } from "@reduxjs/toolkit";
@@ -8,6 +8,7 @@ import { compose } from "@reduxjs/toolkit";
 const rootReducer = combineReducers({
   level: levelReducer,
   player: playerReducer,
+  game: gameReducer,
 });
 
 const composeEnhancers =

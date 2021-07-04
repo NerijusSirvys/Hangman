@@ -4,18 +4,11 @@ import { Level } from "../../types/interfaces/Level";
 const initialState: Level = {
   id: "",
   clue: "",
-  failedGuesses: 0,
   hiddenSecret: [],
   hints: [],
-  isGuessCorrect: false,
   secret: "",
+  isLoading: true,
 };
-
-// type Action =
-//   | { type: "LOAD_NEW_LEVEL"; payload: Level }
-//   | { type: "UPDATE_HIDDEN_SECRET"; payload: number }
-//   | { type: "INCREMENT_FAILED_GUESES" }
-//   | { type: "UPDATE_IS_GUESS_CORRECT"; payload: boolean };
 
 const hideSecret = (word: string) => {
   return word.split("").map(() => {
@@ -32,8 +25,6 @@ const levelReducer = (
       return {
         ...action.payload,
         hiddenSecret: hideSecret(action.payload.secret),
-        failedGuesses: 0,
-        isGuessCorrect: false,
       };
 
     case "UPDATE_HIDDEN_SECRET":
@@ -47,16 +38,10 @@ const levelReducer = (
         hiddenSecret: updatedHiddenSecret,
       };
 
-    case "INCREMENT_FAILED_GUESES":
+    case "SET_IS_LOADING":
       return {
         ...state,
-        failedGuesses: state.failedGuesses + 1,
-      };
-
-    case "UPDATE_IS_GUESS_CORRECT":
-      return {
-        ...state,
-        isGuessCorrect: action.payload,
+        isLoading: action.payload,
       };
     default:
       return state;

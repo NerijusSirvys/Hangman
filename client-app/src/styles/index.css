@@ -1,3 +1,7 @@
+:root {
+  --main-color: #c0c4c9;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -5,6 +9,8 @@
 }
 
 body {
+  color: var(--main-color);
+
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
@@ -16,4 +22,189 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.main {
+  background-image: url("../Images/black_board.svg");
+  background-position: center;
+  background-size: cover;
+  grid-row: 2/-1;
+  grid-column: 1/-1;
+  max-width: 1024px;
+  height: 550px;
+  display: block;
+  padding: 30px;
+  margin: auto;
+  margin-top: 25px;
+}
+
+.main-grid {
+  display: grid;
+  grid-template-columns: 1fr 200px;
+  grid-template-rows: auto;
+  grid-gap: 15px;
+  padding: 15px;
+}
+
+.flex-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.message {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+/* header
+------------- */
+.username {
+  font-size: 1.5rem;
+}
+
+.navigation {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 25px;
+  border-bottom: 7px solid transparent;
+  padding: 15px;
+  border-image: url("../Images/stroke-horizontal.png") 30 round;
+}
+
+.links {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+
+/* Level 
+-------------*/
+.level {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+.level .clue {
+  font-size: 2rem;
+}
+
+.level .secret {
+  font-size: 2.5rem;
+}
+
+/* hints
+-------------- */
+.hints {
+  list-style: none;
+}
+
+.hint {
+  padding: 0.3rem 0;
+  display: flex;
+  gap: 2rem;
+}
+
+.hint button {
+  padding: 0.1rem 0.6rem;
+  font-size: 0.6rem;
+  background-color: transparent;
+  color: var(--main-color);
+  border: 1px solid var(--main-color);
+}
+
+.hint button:hover {
+  animation: shake 0.4s ease-out;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+@keyframes shake {
+  0% {
+    transform: skewX(-10deg);
+  }
+
+  25% {
+    transform: skewX(10deg);
+  }
+
+  50% {
+    transform: skewX(-10deg);
+  }
+
+  75% {
+    transform: skewX(10deg);
+  }
+
+  100% {
+    transform: skewX(-10deg);
+  }
+}
+
+/* side bar
+------------- */
+.sidebar {
+  grid-column: 2/3;
+  grid-row: 1/-1;
+  display: flex;
+  flex-direction: column;
+  justify-content: baseline;
+  gap: 0.5rem;
+  border-left: 7px solid transparent;
+  padding: 15px;
+  border-image: url("../Images/stroke-vertical.png") 30 round;
+}
+
+/* keyboard
+------------- */
+.keyboard {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.key-row {
+  display: flex;
+  justify-content: center;
+}
+
+.key-Letter {
+  padding: 0.5rem;
+  margin: 0 0.3rem;
+  cursor: default;
+}
+
+/* hangman figure
+--------------------- */
+.victim img {
+  width: 100%;
+  height: auto;
+  margin-top: 25px;
+}
+
+.secondary-screen {
+  position: relative;
+}
+
+.disable {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-image: url("../Images/crosslines.svg");
+  background-position: center;
+  background-size: cover;
 }

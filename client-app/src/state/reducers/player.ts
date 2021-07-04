@@ -9,8 +9,6 @@ const initialState: Player = {
   userName: "",
 };
 
-// type Action = { type: "LOAD_NEW_PLAYER"; payload: Player };
-
 const playerReducer = (
   state: Player = initialState,
   action: PlayerActionTypes
