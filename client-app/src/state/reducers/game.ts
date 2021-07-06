@@ -23,6 +23,19 @@ const gameReducer = (
         ...state,
         isGuessCorrect: action.payload,
       };
+
+    case "INCREMENT_CORRECT_GUESSES":
+      return {
+        ...state,
+        correctGuesses: state.correctGuesses + 1,
+      };
+    case "RESET_GAME":
+      return {
+        ...state,
+        correctGuesses: 0,
+        wrongGuesses: 0,
+        isGuessCorrect: false,
+      };
     default:
       return state;
   }

@@ -1,31 +1,24 @@
-import React, { useState } from "react";
+import React, { Dispatch, useState } from "react";
 import { Hints } from "./Hints";
 import { Keyboard } from "./Keyboard";
 import { useEffect } from "react";
-import axios from "axios";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { Message } from "./Message";
 import { AppState } from "../store/configStore";
-import { loadNewLevel, setIsLoading } from "../actions/levelActions";
 import { Quiz } from "./Quiz";
-import { Level } from "../types/interfaces/Level";
+import { LoadLevel } from "../apiCalls";
 
-const getLevelUrl = "https://localhost:5001/api/game/newlevel";
+const levelUrl = "https://localhost:5001/api/game/newlevel";
 
 export const GameBoard = () => {
   const dispatch = useDispatch();
-  const level = useSelector((state: AppState) => state.level);
 
   useEffect(() => {
-    axios.get<Level>(getLevelUrl).then((response) => {
-      dispatch(loadNewLevel(response.data));
-
-      if (response.status === 200) {
-        dispatch(setIsLoading(false));
-      }
-    });
+    LoadLevel(dispatch, levelUrl);
   }, []);
+
+  const level = useSelector((state: AppState) => state.level);
 
   const wronGuesses = useSelector((state: AppState) => state.game.wrongGuesses);
 

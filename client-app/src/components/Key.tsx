@@ -2,9 +2,10 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import {
+  incrementCorrectGuesses,
   incrementFailedGuess,
-  updateHiddenSecret,
-} from "../actions/levelActions";
+} from "../actions/gameActions";
+import { updateHiddenSecret } from "../actions/levelActions";
 
 import { AppState } from "../store/configStore";
 
@@ -12,6 +13,7 @@ const updateSecret = (letter: string, letters: string, dispatch: any) => {
   for (let i = 0; i < letters.length; i++) {
     if (letters[i].toUpperCase() === letter) {
       dispatch(updateHiddenSecret(i));
+      dispatch(incrementCorrectGuesses());
     }
   }
 };

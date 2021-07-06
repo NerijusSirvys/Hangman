@@ -63,6 +63,14 @@ main {
   width: 100%;
   justify-content: center;
   align-items: center;
+  text-align: center;
+  flex-direction: column;
+}
+
+.new-game-message {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
 /* header
@@ -175,6 +183,7 @@ main {
   justify-content: center;
   align-items: center;
   width: 100%;
+  margin-top: 1.5rem;
 }
 
 .key-row {
@@ -190,6 +199,11 @@ main {
 
 /* hangman figure
 --------------------- */
+.victim {
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
 .victim img {
   width: 100%;
   height: auto;

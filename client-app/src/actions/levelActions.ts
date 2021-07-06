@@ -15,22 +15,9 @@ export const loadNewLevel = (level: Level): AppActions => {
   };
 };
 
-export const incrementFailedGuess = (): AppActions => {
-  return {
-    type: "INCREMENT_FAILED_GUESES",
-  };
-};
-
 export const updateHiddenSecret = (index: number): AppActions => {
   return {
     type: "UPDATE_HIDDEN_SECRET",
     payload: index,
-  };
-};
-
-export const updateIsGuessCorrect = (isCorrect: boolean): AppActions => {
-  return {
-    type: "UPDATE_IS_GUESS_CORRECT",
-    payload: isCorrect,
   };
 };
