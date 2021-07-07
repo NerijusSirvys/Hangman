@@ -9,7 +9,6 @@ export const Quiz = () => {
     <section className="level">
       <h3 className="clue">{level.clue}</h3>
       <h4 className="secret">{level.hiddenSecret}</h4>
-      {/* <h4 className="secret">{level.failedGuesses}</h4> */}
     </section>
   );
 };

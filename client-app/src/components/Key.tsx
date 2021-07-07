@@ -34,7 +34,7 @@ export const Key = (props: any) => {
 
   return (
     <div className="key-Letter" onClick={() => handleClick(keyLetter)}>
-      <p className="js-keyLetter">{keyLetter}</p>
+      <p>{keyLetter}</p>
     </div>
   );
 };

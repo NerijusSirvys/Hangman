@@ -1,5 +1,3 @@
-import { useSelector } from "react-redux";
-import { AppState } from "../store/configStore";
 import { Key } from "./Key";
 
 const topRow = ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"];

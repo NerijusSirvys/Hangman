@@ -43,6 +43,10 @@ const levelReducer = (
         ...state,
         isLoading: action.payload,
       };
+    case "REMOVE_LEVEL":
+      return {
+        ...initialState,
+      };
     default:
       return state;
   }

@@ -199,18 +199,18 @@ main {
 
 /* hangman figure
 --------------------- */
-.victim {
+.hangman {
   height: 100%;
   display: flex;
   align-items: center;
 }
-.victim img {
+.hangman img {
   width: 100%;
   height: auto;
   margin-top: 25px;
 }
 
-.secondary-screen {
+.pos-relative {
   position: relative;
 }
 

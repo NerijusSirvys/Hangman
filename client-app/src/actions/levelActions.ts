@@ -8,6 +8,12 @@ export const setIsLoading = (isLoading: boolean): AppActions => {
   };
 };
 
+export const removeLevel = (): AppActions => {
+  return {
+    type: "REMOVE_LEVEL",
+  };
+};
+
 export const loadNewLevel = (level: Level): AppActions => {
   return {
     type: "LOAD_NEW_LEVEL",

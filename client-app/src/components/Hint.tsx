@@ -5,7 +5,9 @@ export const Hint = (props: any) => {
   const [hintIsShowing, setHintIsShowing] = useState(show);
 
   useEffect(() => {
+    //==============================
     // TODO:push data to API to save
+    //==============================
   }, [hintIsShowing]);
 
   if (hintIsShowing) {
@@ -16,10 +18,7 @@ export const Hint = (props: any) => {
     <>
       <p>Click SHOW to reveal this clue</p>
       <p>Cost: {price} stars</p>
-      <button onClick={handleClick}>SHOW</button>
+      <button onClick={() => setHintIsShowing(true)}>SHOW</button>
     </>
   );
-  function handleClick() {
-    setHintIsShowing(true);
-  }
 };

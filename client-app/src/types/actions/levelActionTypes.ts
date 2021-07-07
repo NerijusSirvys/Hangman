@@ -2,8 +2,12 @@ import { Level } from "../interfaces/Level";
 
 const UPDATE_HIDDEN_SECRET = "UPDATE_HIDDEN_SECRET";
 const LOAD_NEW_LEVEL = "LOAD_NEW_LEVEL";
-
 const SET_IS_LOADING = "SET_IS_LOADING";
+const REMOVE_LEVEL = "REMOVE_LEVEL";
+
+export interface RemoveLevel {
+  type: typeof REMOVE_LEVEL;
+}
 
 export interface SetIsLoading {
   type: typeof SET_IS_LOADING;
@@ -23,4 +27,5 @@ export interface LoadNewLevelAction {
 export type LevelActionTypes =
   | UpdateHiddenSecretAction
   | LoadNewLevelAction
-  | SetIsLoading;
+  | SetIsLoading
+  | RemoveLevel;
