@@ -1,5 +1,6 @@
 export interface Game {
   wrongGuesses: number;
-  isGuessCorrect: boolean;
+  // isGuessCorrect: boolean;
   correctGuesses: number;
+  isLevelCompleted: boolean;
 }

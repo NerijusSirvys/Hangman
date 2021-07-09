@@ -73,6 +73,10 @@ main {
   gap: 1rem;
 }
 
+.new-game-message p {
+  padding: 0.2rem 0.3rem;
+}
+
 /* header
 ------------- */
 .username {
@@ -82,7 +86,6 @@ main {
 .navigation {
   display: flex;
   justify-content: space-between;
-  padding: 10px 25px;
   border-bottom: 7px solid transparent;
   padding: 15px;
   border-image: url("../Images/stroke-horizontal.png") 30 round;
@@ -94,9 +97,13 @@ main {
   align-items: center;
 }
 
+.links .link {
+  padding: 0.3rem 0.3rem;
+}
+
 /* Level 
 -------------*/
-.level {
+.quiz {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -104,11 +111,11 @@ main {
   height: 100%;
   width: 100%;
 }
-.level .clue {
+.quiz .clue {
   font-size: 2rem;
 }
 
-.level .secret {
+.quiz .secret {
   font-size: 2.5rem;
 }
 
@@ -194,7 +201,17 @@ main {
 .key-Letter {
   padding: 0.5rem;
   margin: 0 0.3rem;
+}
+
+.hover {
   cursor: default;
+  transition: 300ms all;
+  border: 1px solid transparent;
+  border-radius: 5px;
+}
+.hover:hover {
+  border: 1px solid var(--main-color);
+  border-radius: 5px;
 }
 
 /* hangman figure
@@ -214,11 +231,42 @@ main {
   position: relative;
 }
 
-.disable {
+.scribble {
   position: absolute;
   height: 100%;
   width: 100%;
   background-image: url("../Images/crosslines.svg");
   background-position: center;
   background-size: cover;
+}
+
+.disable {
+  pointer-events: none;
+}
+
+.hidden {
+  display: none;
+}
+
+.answer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1.5rem;
+}
+
+.letter {
+  height: 2.5rem;
+  width: 2.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.letter p {
+  font-size: 2.7rem;
+}
+
+.horizontal {
+  display: flex;
 }

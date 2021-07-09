@@ -1,12 +1,10 @@
-import { Hint } from "./Hint";
+import hint from "../interfaces/Hint";
 
 export interface Level {
   id: string;
   secret: string;
   clue: string;
-  hints: Hint[];
+  hints: hint[];
   hiddenSecret: string[];
-  // failedGuesses: number;
-  // isGuessCorrect: boolean;
   isLoading: boolean;
 }

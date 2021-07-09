@@ -8,6 +8,14 @@ export const getLevel = (url: string) => {
   });
 };
 
-export const UpdatePlayer = (player: Player) => {
+export const UpdatePlayer = (player: Player, completeLevelId: string) => {
+  //=========================
   // TODO: push player to API
+  //=========================
+};
+
+export const UpdateHint = (hintId: string, showHint: boolean) => {
+  //======================
+  // TODO:push hint to API
+  //======================
 };

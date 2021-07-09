@@ -1,4 +1,4 @@
-import React, { Dispatch, useState } from "react";
+import React, { Dispatch, useRef, useState } from "react";
 import { Hints } from "./Hints";
 import { Keyboard } from "./Keyboard";
 import { useEffect } from "react";
@@ -27,28 +27,19 @@ export const GameBoard = () => {
   const level = useSelector((state: AppState) => state.level);
   const wronGuesses = useSelector((state: AppState) => state.game.wrongGuesses);
 
-  let disableSection = "";
-  wronGuesses >= 6 ? (disableSection = "disable") : (disableSection = "");
-
   if (level.isLoading) {
     return (
       <>
         <Message message={"Loading..."} />
-        <div className="pos-relative">
-          <div className={disableSection}></div>
-          <Hints />
-          <Keyboard />
-        </div>
       </>
     );
   }
 
   return (
     <>
-      {/* {level.isLoading && <Message message={"Loading..."} />} */}
       {wronGuesses < 6 ? <Quiz /> : <Message message={"Game Over..."} />}
-      <div className="pos-relative">
-        <div className={disableSection}></div>
+      <div className="wrapper">
+        <div className={wronGuesses >= 6 ? "scribble" : ""}></div>
         <Hints />
         <Keyboard />
       </div>

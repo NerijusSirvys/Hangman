@@ -9,8 +9,8 @@ export const Header = () => {
     <nav className="navigation">
       <p className="username">{userName}</p>
       <div className="links">
-        <p>Leader Board</p>
-        <p>Log out</p>
+        <p className="hover link">Leader Board</p>
+        <p className="hover link">Log out</p>
       </div>
     </nav>
   );

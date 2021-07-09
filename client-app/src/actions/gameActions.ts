@@ -1,5 +1,12 @@
 import { AppActions } from "../types/actions/appActionTypes";
 
+export const updateIsLevelComplete = (secretLength: number): AppActions => {
+  return {
+    type: "UPDATE_IS_LEVEL_COMPLETE",
+    payload: secretLength,
+  };
+};
+
 export const resetGame = (): AppActions => {
   return {
     type: "RESET_GAME",
@@ -12,15 +19,9 @@ export const incrementFailedGuess = (): AppActions => {
   };
 };
 
-export const updateIsGuessCorrect = (isCorrect: boolean): AppActions => {
-  return {
-    type: "UPDATE_IS_GUESS_CORRECT",
-    payload: isCorrect,
-  };
-};
-
-export const incrementCorrectGuesses = (): AppActions => {
+export const incrementCorrectGuesses = (correctLetters: number): AppActions => {
   return {
     type: "INCREMENT_CORRECT_GUESSES",
+    payload: correctLetters,
   };
 };

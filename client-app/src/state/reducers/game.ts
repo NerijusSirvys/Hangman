@@ -4,8 +4,8 @@ import { Game } from "../../types/interfaces/Game";
 
 const initialState: Game = {
   correctGuesses: 0,
-  isGuessCorrect: false,
   wrongGuesses: 0,
+  isLevelCompleted: false,
 };
 
 const gameReducer = (
@@ -18,23 +18,22 @@ const gameReducer = (
         ...state,
         wrongGuesses: state.wrongGuesses + 1,
       };
-    case "UPDATE_IS_GUESS_CORRECT":
-      return {
-        ...state,
-        isGuessCorrect: action.payload,
-      };
-
     case "INCREMENT_CORRECT_GUESSES":
       return {
         ...state,
-        correctGuesses: state.correctGuesses + 1,
+        correctGuesses: state.correctGuesses + action.payload,
       };
     case "RESET_GAME":
       return {
         ...state,
         correctGuesses: 0,
         wrongGuesses: 0,
-        isGuessCorrect: false,
+        isLevelCompleted: false,
+      };
+    case "UPDATE_IS_LEVEL_COMPLETE":
+      return {
+        ...state,
+        isLevelCompleted: state.correctGuesses === action.payload,
       };
     default:
       return state;

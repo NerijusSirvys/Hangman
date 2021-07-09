@@ -56,7 +56,7 @@ namespace Api.Controllers
                 Id = Guid.NewGuid(),
                 Clue = "I have skin but I’m not a person",
                 Hints = hints,
-                Secret = "Apple",
+                Secret = "APPLE",
                 Difficulty = Enums.LevelDifficulty.VeryEasy
             };
 
