@@ -12,9 +12,6 @@ const handleClick = (dispatch: any, player: Player): void => {
   // clear game data
   dispatch(resetGame());
 
-  // push player data to API
-  UpdatePlayer(player);
-
   // remove old level that is showing
   dispatch(removeLevel());
 

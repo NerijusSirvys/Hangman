@@ -227,7 +227,7 @@ main {
   margin-top: 25px;
 }
 
-.pos-relative {
+.wrapper {
   position: relative;
 }
 
