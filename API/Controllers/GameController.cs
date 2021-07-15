@@ -19,7 +19,7 @@ namespace Api.Controllers
                 UserName = "DemoGuy",
                 CompleteLevels = new List<Guid>(),
                 Score = 125,
-                Stars = 3
+                Stars = 30
             };
 
             return Ok(new PlayerResponse().Map(player));

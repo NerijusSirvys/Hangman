@@ -1,10 +1,16 @@
 import { Player } from "../interfaces/Player";
 
-export const LOAD_PLAYER = "LOAD_PLAYER";
+const LOAD_PLAYER = "LOAD_PLAYER";
+const REMOVE_STARS = "REMOVE_STARS";
+
+export interface RemoveStars {
+  type: typeof REMOVE_STARS;
+  starsSpent: number;
+}
 
 export interface LoadPlayerAction {
   type: typeof LOAD_PLAYER;
-  payload: Player;
+  player: Player;
 }
 
-export type PlayerActionTypes = LoadPlayerAction;
+export type PlayerActionTypes = LoadPlayerAction | RemoveStars;

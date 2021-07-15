@@ -2,6 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { AppState } from "../store/configStore";
 import { ReactComponent as CircleQuestionMark } from "../Images/question-circle.svg";
+
 export const Quiz = () => {
   const level = useSelector((state: AppState) => state.level);
 

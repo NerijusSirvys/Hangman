@@ -23,6 +23,7 @@ const hangman = [
 
 export const HangmanImage = () => {
   const game = useSelector((state: AppState) => state.game);
+
   return (
     <section className="hangman">
       {game.isLevelCompleted ? (

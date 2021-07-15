@@ -2,7 +2,7 @@ import axios from "axios";
 import { Level } from "./types/interfaces/Level";
 import { Player } from "./types/interfaces/Player";
 
-export const getLevel = (url: string) => {
+export const GetLevel = (url: string) => {
   return axios.get<Level>(url).then((response) => {
     return response.data;
   });
@@ -18,4 +18,10 @@ export const UpdateHint = (hintId: string, showHint: boolean) => {
   //======================
   // TODO:push hint to API
   //======================
+};
+
+export const UpdatePlayerStars = (stars: number) => {
+  //================================================
+  //TODO: push totalnumber of stars that player have
+  //================================================
 };

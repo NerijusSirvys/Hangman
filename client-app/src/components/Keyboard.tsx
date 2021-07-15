@@ -10,6 +10,7 @@ export const Keyboard = () => {
   const isLevelComplete = useSelector(
     (state: AppState) => state.game.isLevelCompleted
   );
+
   return (
     <section className={isLevelComplete ? "keyboard disable" : "keyboard"}>
       <div className="key-row">

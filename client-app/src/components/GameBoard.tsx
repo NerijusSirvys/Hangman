@@ -7,15 +7,19 @@ import { useSelector } from "react-redux";
 import { Message } from "./Message";
 import { AppState } from "../store/configStore";
 import { Quiz } from "./Quiz";
-import { getLevel } from "../apiCalls";
+import { GetLevel } from "../apiCalls";
 import { loadNewLevel } from "../actions/levelActions";
 
 const levelUrl = "https://localhost:5001/api/game/newlevel";
+const newLevel = GetLevel(levelUrl);
 
 export const GameBoard = () => {
+  const level = useSelector((state: AppState) => state.level);
   const dispatch = useDispatch();
 
-  let newLevel = getLevel(levelUrl);
+  const wrongGuesses = useSelector(
+    (state: AppState) => state.game.wrongGuesses
+  );
 
   useEffect(() => {
     // delay level loading to display loading message
@@ -24,9 +28,7 @@ export const GameBoard = () => {
     }, 2000);
   }, []);
 
-  const level = useSelector((state: AppState) => state.level);
-  const wronGuesses = useSelector((state: AppState) => state.game.wrongGuesses);
-
+  // show loading message
   if (level.isLoading) {
     return (
       <>
@@ -37,9 +39,9 @@ export const GameBoard = () => {
 
   return (
     <>
-      {wronGuesses < 6 ? <Quiz /> : <Message message={"Game Over..."} />}
+      {wrongGuesses < 6 ? <Quiz /> : <Message message={"Game Over..."} />}
       <div className="wrapper">
-        <div className={wronGuesses >= 6 ? "scribble" : ""}></div>
+        <div className={wrongGuesses >= 6 ? "scribble" : ""}></div>
         <Hints />
         <Keyboard />
       </div>

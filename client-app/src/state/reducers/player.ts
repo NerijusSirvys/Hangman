@@ -1,3 +1,4 @@
+import { stat } from "fs";
 import { PlayerActionTypes } from "../../types/actions/playerActionTypes";
 import { Player } from "../../types/interfaces/Player";
 
@@ -13,10 +14,19 @@ const playerReducer = (
   state: Player = initialState,
   action: PlayerActionTypes
 ): Player => {
-  if (action.type === "LOAD_PLAYER") {
-    return action.payload;
+  switch (action.type) {
+    case "LOAD_PLAYER":
+      return action.player;
+
+    case "REMOVE_STARS":
+      return {
+        ...state,
+        stars: state.stars - action.starsSpent,
+      };
+
+    default:
+      return state;
   }
-  return state;
 };
 
 export default playerReducer;

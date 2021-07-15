@@ -18,11 +18,13 @@ const gameReducer = (
         ...state,
         wrongGuesses: state.wrongGuesses + 1,
       };
+
     case "INCREMENT_CORRECT_GUESSES":
       return {
         ...state,
-        correctGuesses: state.correctGuesses + action.payload,
+        correctGuesses: state.correctGuesses + action.correctGuesses,
       };
+
     case "RESET_GAME":
       return {
         ...state,
@@ -30,10 +32,11 @@ const gameReducer = (
         wrongGuesses: 0,
         isLevelCompleted: false,
       };
+
     case "UPDATE_IS_LEVEL_COMPLETE":
       return {
         ...state,
-        isLevelCompleted: state.correctGuesses === action.payload,
+        isLevelCompleted: state.correctGuesses === action.secretLength,
       };
     default:
       return state;

@@ -7,7 +7,7 @@ const UPDATE_IS_LEVEL_COMPLETE = "UPDATE_IS_LEVEL_COMPLETE";
 
 export interface UpdateIsLevelComplete {
   type: typeof UPDATE_IS_LEVEL_COMPLETE;
-  payload: number;
+  secretLength: number;
 }
 
 export interface ResetState {
@@ -20,7 +20,7 @@ export interface IncrementFailedGuessesAction {
 
 export interface IncrementCorrectGuessesAction {
   type: typeof INCREMENT_CORRECT_GUESSES;
-  payload: number;
+  correctGuesses: number;
 }
 
 export type GameActionTypes =

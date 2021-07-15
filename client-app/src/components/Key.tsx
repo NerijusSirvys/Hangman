@@ -1,15 +1,14 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
+import { updateHiddenSecret } from "../actions/levelActions";
+import { AppState } from "../store/configStore";
 import {
   incrementCorrectGuesses,
   incrementFailedGuess,
   updateIsLevelComplete,
 } from "../actions/gameActions";
-import { updateHiddenSecret } from "../actions/levelActions";
-
-import { AppState } from "../store/configStore";
-import { Game } from "../types/interfaces/Game";
+import { Level } from "../types/interfaces/Level";
 
 const updateSecret = (
   letter: string,
@@ -27,32 +26,37 @@ const updateSecret = (
   return correctLetters;
 };
 
+const handleClick = (letter: string, level: Level, dispatch: any) => {
+  // check if guess was correct
+  if (
+    level.secret.toUpperCase().includes(letter) &&
+    !level.hiddenSecret.toString().toUpperCase().includes(letter)
+  ) {
+    // updates hidden letters and returns number of how many letters guessed
+    const correctLetters = updateSecret(letter, level.secret, dispatch);
+
+    if (correctLetters > 0) {
+      dispatch(incrementCorrectGuesses(correctLetters));
+
+      // if number of correct guesses is equal to number of characters in secret
+      // set levelIsComplete to TRUE
+      dispatch(updateIsLevelComplete(level.secret.length));
+    }
+  } else {
+    dispatch(incrementFailedGuess());
+  }
+};
+
 export const Key = (props: any) => {
   const { keyLetter } = props;
   const level = useSelector((state: AppState) => state.level);
-  const game = useSelector((state: AppState) => state.game);
   const dispatch = useDispatch();
 
-  const handleClick = (letter: string) => {
-    // check if guess was correct
-    if (
-      level.secret.toUpperCase().includes(letter) &&
-      !level.hiddenSecret.toString().toUpperCase().includes(letter)
-    ) {
-      // updates hidden letters and returns number of how many letters guessed
-      const correctLetters = updateSecret(letter, level.secret, dispatch);
-
-      if (correctLetters > 0) {
-        dispatch(incrementCorrectGuesses(correctLetters));
-        dispatch(updateIsLevelComplete(level.secret.length));
-      }
-    } else {
-      dispatch(incrementFailedGuess());
-    }
-  };
-
   return (
-    <div className="key-Letter hover" onClick={() => handleClick(keyLetter)}>
+    <div
+      className="key-Letter hover"
+      onClick={() => handleClick(keyLetter, level, dispatch)}
+    >
       <p>{keyLetter}</p>
     </div>
   );

@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { resetGame } from "../actions/gameActions";
 import { loadNewLevel, removeLevel } from "../actions/levelActions";
-import { getLevel, UpdatePlayer } from "../apiCalls";
+import { GetLevel, UpdatePlayer } from "../apiCalls";
 import { AppState } from "../store/configStore";
 import { Player } from "../types/interfaces/Player";
 import { Message } from "./Message";
@@ -15,7 +15,7 @@ const handleClick = (dispatch: any, player: Player): void => {
   // remove old level that is showing
   dispatch(removeLevel());
 
-  const newLevel = getLevel(levelUrl);
+  const newLevel = GetLevel(levelUrl);
 
   // delay new level display to show loading message
   setTimeout(() => {

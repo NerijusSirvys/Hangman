@@ -1,17 +1,25 @@
-import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
-import { UpdateHint } from "../apiCalls";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { showHint } from "../actions/levelActions";
+import { removeStars } from "../actions/playerActions";
+import { UpdateHint, UpdatePlayerStars } from "../apiCalls";
 import { AppState } from "../store/configStore";
 import hint from "../types/interfaces/Hint";
 
+const handleClick = (dispatch: any, price: number, id: string) => {
+  dispatch(removeStars(price));
+  dispatch(showHint(id));
+};
+
 export const Hint = (props: hint) => {
   const { clue, show, price, id } = props;
-  const [hintIsShowing, setHintIsShowing] = useState(show);
-  const player = useSelector((state: AppState) => state.player);
 
+  const player = useSelector((state: AppState) => state.player);
   const isLevelComplete = useSelector(
     (state: AppState) => state.game.isLevelCompleted
   );
+
+  const dispatch = useDispatch();
 
   // hide hint SHOW button if player have less stars that hint const
   // of when level is complete
@@ -19,13 +27,12 @@ export const Hint = (props: hint) => {
     return player.stars < price || isLevelComplete;
   };
 
-  console.log(hideButton());
-
   useEffect(() => {
     UpdateHint(id, true);
-  }, [hintIsShowing]);
+    UpdatePlayerStars(player.stars);
+  }, [show]);
 
-  if (hintIsShowing) {
+  if (show) {
     return <p>{clue}</p>;
   }
 
@@ -35,7 +42,7 @@ export const Hint = (props: hint) => {
       <p>Cost: {price} stars</p>
       <button
         className={hideButton() ? "hidden" : ""}
-        onClick={() => setHintIsShowing(true)}
+        onClick={() => handleClick(dispatch, price, id)}
       >
         SHOW
       </button>

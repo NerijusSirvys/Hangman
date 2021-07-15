@@ -23,15 +23,16 @@ const levelReducer = (
   switch (action.type) {
     case "LOAD_NEW_LEVEL":
       return {
-        ...action.payload,
-        hiddenSecret: hideSecret(action.payload.secret),
+        ...action.level,
+        hiddenSecret: hideSecret(action.level.secret),
       };
 
     case "UPDATE_HIDDEN_SECRET":
       let updatedHiddenSecret: string[] = state.hiddenSecret;
 
       // swap hidden letter at index with visible letter
-      updatedHiddenSecret[action.payload] = state.secret[action.payload];
+      updatedHiddenSecret[action.secretIndex] =
+        state.secret[action.secretIndex];
 
       return {
         ...state,
@@ -41,12 +42,27 @@ const levelReducer = (
     case "SET_IS_LOADING":
       return {
         ...state,
-        isLoading: action.payload,
+        isLoading: action.isLoading,
       };
+
     case "REMOVE_LEVEL":
       return {
         ...initialState,
       };
+
+    case "SHOW_HINT":
+      let updatedHints = state.hints;
+
+      updatedHints.forEach((hint) => {
+        if (hint.id == action.hintId) {
+          hint.show = true;
+        }
+      });
+      return {
+        ...state,
+        hints: updatedHints,
+      };
+
     default:
       return state;
   }
