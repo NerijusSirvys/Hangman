@@ -8,6 +8,8 @@ const initialState: Level = {
   hints: [],
   secret: "",
   isLoading: true,
+  starAwardForLetter: 0,
+  difficulty: "",
 };
 
 const hideSecret = (word: string) => {

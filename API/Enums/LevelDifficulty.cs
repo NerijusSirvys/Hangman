@@ -7,7 +7,7 @@ namespace Api.Enums
 {
     public enum LevelDifficulty
     {
-        VeryEasy,
+        VeryEasy = 1,
         Easy,
         Medium,
         Hard

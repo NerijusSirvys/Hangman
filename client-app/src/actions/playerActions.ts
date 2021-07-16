@@ -14,3 +14,10 @@ export const removeStars = (stars: number): AppActions => {
     starsSpent: stars,
   };
 };
+
+export const addStars = (stars: number): AppActions => {
+  return {
+    type: "ADD_STARS",
+    starsEarned: stars,
+  };
+};

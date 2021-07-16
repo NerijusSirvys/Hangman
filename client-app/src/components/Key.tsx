@@ -9,6 +9,7 @@ import {
   updateIsLevelComplete,
 } from "../actions/gameActions";
 import { Level } from "../types/interfaces/Level";
+import { addStars } from "../actions/playerActions";
 
 const updateSecret = (
   letter: string,
@@ -37,6 +38,7 @@ const handleClick = (letter: string, level: Level, dispatch: any) => {
 
     if (correctLetters > 0) {
       dispatch(incrementCorrectGuesses(correctLetters));
+      dispatch(addStars(level.starAwardForLetter));
 
       // if number of correct guesses is equal to number of characters in secret
       // set levelIsComplete to TRUE

@@ -10,6 +10,5 @@ namespace Api.Models
         public Guid Id { get; set; }
         public string Clue { get; set; }
         public bool Show { get; set; }
-        public int Price { get; set; }
     }
 }

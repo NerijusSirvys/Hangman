@@ -20,7 +20,9 @@ namespace API.Repositories
 
         public Level GetLevel()
         {
-            var levels = Levels.Where(x => x.Difficulty == nameof(LevelDifficulty.VeryEasy)).ToList();
+            //var levels = Levels.Where(x => x.Difficulty == nameof(LevelDifficulty.VeryEasy)).ToList();
+            var levels = Levels.ToList();
+
             var random = new Random();
 
             var index = random.Next(0, levels.Count - 1);

@@ -1,4 +1,6 @@
-﻿using Api.Models;
+﻿using Api.Enums;
+using Api.Models;
+using API.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,21 +8,22 @@ using System.Threading.Tasks;
 
 namespace Api.Responses
 {
-    public class HintResponse : IResponse<HintResponse, Hint>
+    public class HintResponse
     {
         public string Id { get; set; }
         public string Clue { get; set; }
         public bool Show { get; set; }
         public int Price { get; set; }
 
-        public HintResponse Map(Hint model)
+        public HintResponse Map(Hint model, string levelDifficulty)
         {
-            return new HintResponse
+            return new HintResponse()
             {
                 Id = model.Id.ToString(),
                 Clue = model.Clue,
-                Price = model.Price,
-                Show = model.Show
+                Price = StarService.Cost(levelDifficulty),
+                Show = model.Show,
+                
             };
         }
     }

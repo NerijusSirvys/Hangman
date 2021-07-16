@@ -24,6 +24,12 @@ const playerReducer = (
         stars: state.stars - action.starsSpent,
       };
 
+    case "ADD_STARS":
+      return {
+        ...state,
+        stars: state.stars + action.starsEarned,
+      };
+
     default:
       return state;
   }
