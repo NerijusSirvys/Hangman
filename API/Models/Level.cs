@@ -12,6 +12,6 @@ namespace Api.Models
         public string Secret { get; set; }
         public string Clue { get; set; }
         public IEnumerable<Hint> Hints { get; set; }
-        public LevelDifficulty Difficulty { get; set; }
+        public string Difficulty { get; set; }
     }
 }
