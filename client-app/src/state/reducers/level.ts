@@ -8,7 +8,8 @@ const initialState: Level = {
   hints: [],
   secret: "",
   isLoading: true,
-  starAwardForLetter: 0,
+  starAward: 0,
+  gameScoreAward: 0,
   difficulty: "",
 };
 
@@ -56,7 +57,7 @@ const levelReducer = (
       let updatedHints = state.hints;
 
       updatedHints.forEach((hint) => {
-        if (hint.id == action.hintId) {
+        if (hint.id === action.hintId) {
           hint.show = true;
         }
       });

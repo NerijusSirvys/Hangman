@@ -112,7 +112,8 @@ main {
   width: 100%;
 }
 .quiz .clue {
-  font-size: 2rem;
+  font-size: 1.6rem;
+  text-align: center;
 }
 
 .quiz .secret {
@@ -198,7 +199,7 @@ main {
   justify-content: center;
 }
 
-.key-Letter {
+.key-letter {
   padding: 0.5rem;
   margin: 0 0.3rem;
 }
@@ -241,6 +242,11 @@ main {
 }
 
 .disable {
+  pointer-events: none;
+}
+
+.used {
+  border: 1px solid var(--main-color);
   pointer-events: none;
 }
 

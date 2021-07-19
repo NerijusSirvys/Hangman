@@ -1,4 +1,4 @@
-import React, { Dispatch, useRef, useState } from "react";
+import React from "react";
 import { Hints } from "./Hints";
 import { Keyboard } from "./Keyboard";
 import { useEffect } from "react";

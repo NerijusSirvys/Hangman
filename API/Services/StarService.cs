@@ -23,6 +23,11 @@ namespace API.Services
             return (int)reward;
         }
 
+        /// <summary>
+        /// Calculates cost of the hint
+        /// </summary>
+        /// <param name="levelDifficulty"></param>
+        /// <returns></returns>
         public static int Cost(string levelDifficulty)
         {
             if(_multiplier > 4)

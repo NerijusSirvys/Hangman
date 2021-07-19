@@ -13,7 +13,8 @@ namespace Api.Responses
         public string Secret { get; set; }
         public string Clue { get; set; }
         public string Difficulty { get; set; }
-        public int StarAwardForLetter { get; set; }
+        public int StarAward { get; set; }
+        public int GameScoreAward { get; set; }
         public IEnumerable<HintResponse> Hints { get; set; }
 
         public LevelResponse Map(Level model)
@@ -25,7 +26,8 @@ namespace Api.Responses
                 Id = model.Id.ToString(),
                 Clue = model.Clue,
                 Secret = model.Secret,
-                StarAwardForLetter = StarService.Reward(model.Difficulty),
+                StarAward = StarService.Reward(model.Difficulty),
+                GameScoreAward = GameScoreService.Reward(model.Difficulty),
                 Hints = hintResponses,
                 Difficulty = model.Difficulty,
             };

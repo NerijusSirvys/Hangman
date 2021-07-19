@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { resetGame } from "../actions/gameActions";
 import { loadNewLevel, removeLevel } from "../actions/levelActions";
-import { GetLevel, UpdatePlayer } from "../apiCalls";
+import { GetLevel } from "../apiCalls";
 import { AppState } from "../store/configStore";
 import { Player } from "../types/interfaces/Player";
 import { Message } from "./Message";

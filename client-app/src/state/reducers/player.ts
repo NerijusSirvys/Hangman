@@ -30,6 +30,18 @@ const playerReducer = (
         stars: state.stars + action.starsEarned,
       };
 
+    case "ADD_GAME_SCORE":
+      return {
+        ...state,
+        gameScore: state.gameScore + action.gameScoreEarned,
+      };
+
+    case "INCREMENT_COMPLETE_LEVEL":
+      return {
+        ...state,
+        numberOfCompleteLevels: state.numberOfCompleteLevels + 1,
+      };
+
     default:
       return state;
   }

@@ -7,6 +7,7 @@ export interface Level {
   hints: hint[];
   hiddenSecret: string[];
   isLoading: boolean;
-  starAwardForLetter: number;
+  starAward: number;
+  gameScoreAward: number;
   difficulty: string;
 }

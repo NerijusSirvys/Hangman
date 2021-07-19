@@ -29,7 +29,7 @@ export const HangmanImage = () => {
       {game.isLevelCompleted ? (
         <LevelCompleteMessage />
       ) : (
-        <img src={hangman[game.wrongGuesses]} alt="hangman image" />
+        <img src={hangman[game.wrongGuesses]} alt="hangman" />
       )}
     </section>
   );
