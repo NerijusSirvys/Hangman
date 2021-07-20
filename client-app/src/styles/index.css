@@ -67,14 +67,9 @@ main {
   flex-direction: column;
 }
 
-.new-game-message {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.new-game-message p {
+.message p {
   padding: 0.2rem 0.3rem;
+  margin-top: 1rem;
 }
 
 /* header

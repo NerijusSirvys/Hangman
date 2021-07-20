@@ -1,26 +1,11 @@
 import { useDispatch, useSelector } from "react-redux";
-import { resetGame } from "../actions/gameActions";
-import { loadNewLevel, removeLevel } from "../actions/levelActions";
-import { GetLevel } from "../apiCalls";
+import { reload } from "../functions";
 import { AppState } from "../store/configStore";
-import { Player } from "../types/interfaces/Player";
-import { Message } from "./Message";
 
-const levelUrl = "https://localhost:5001/api/game/newlevel";
+// const levelUrl = "https://localhost:5001/api/game/newlevel";
 
-const handleClick = (dispatch: any, player: Player): void => {
-  // clear game data
-  dispatch(resetGame());
-
-  // remove old level that is showing
-  dispatch(removeLevel());
-
-  const newLevel = GetLevel(levelUrl);
-
-  // delay new level display to show loading message
-  setTimeout(() => {
-    newLevel.then((level) => dispatch(loadNewLevel(level)));
-  }, 1500);
+const handleClick = (dispatch: any): void => {
+  reload(dispatch);
 };
 
 export const LevelCompleteMessage = () => {
@@ -28,9 +13,9 @@ export const LevelCompleteMessage = () => {
   const player = useSelector((state: AppState) => state.player);
 
   return (
-    <div className="new-game-message">
-      <Message message={"Play again?"} />
-      <p className="hover" onClick={() => handleClick(dispatch, player)}>
+    <div className="message">
+      <h2>Play again?</h2>
+      <p className="hover" onClick={() => handleClick(dispatch)}>
         Sure...
       </p>
     </div>

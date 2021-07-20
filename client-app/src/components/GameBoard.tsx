@@ -4,11 +4,12 @@ import { Keyboard } from "./Keyboard";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-import { Message } from "./Message";
 import { AppState } from "../store/configStore";
 import { Quiz } from "./Quiz";
 import { GetLevel } from "../apiCalls";
 import { loadNewLevel } from "../actions/levelActions";
+import { GameOverMessage } from "./GameOverMessage";
+import { LoadingMessage } from "./LoadingMessage";
 
 const levelUrl = "https://localhost:5001/api/game/newlevel";
 const newLevel = GetLevel(levelUrl);
@@ -32,14 +33,14 @@ export const GameBoard = () => {
   if (level.isLoading) {
     return (
       <>
-        <Message message={"Loading..."} />
+        <LoadingMessage />
       </>
     );
   }
 
   return (
     <>
-      {wrongGuesses < 6 ? <Quiz /> : <Message message={"Game Over..."} />}
+      {wrongGuesses < 6 ? <Quiz /> : <GameOverMessage />}
       <div className="wrapper">
         <div className={wrongGuesses >= 6 ? "scribble" : ""}></div>
         <Hints />
