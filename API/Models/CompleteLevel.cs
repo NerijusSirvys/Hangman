@@ -4,17 +4,13 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Api.Models
+namespace API.Models
 {
-    public class Hint
+    public class CompleteLevel
     {
         [Key]
         public Guid Id { get; set; }
-
-        [Required]
-        public string Clue { get; set; }
-
-        [Required]
-        public bool Show { get; set; }
+        public string PlayerId { get; set; }
+        public string LevelId { get; set; }
     }
 }

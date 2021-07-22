@@ -4,6 +4,8 @@ using API.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Api.Controllers
 {
@@ -27,9 +29,12 @@ namespace Api.Controllers
         }
 
         [HttpGet("newlevel")]
-        public IActionResult GetNewLevel()
+        public async Task<IActionResult> GetNewLevelAsync()
         {
-            var level = _repository.GetLevel();
+            var player = _repository.GetPlayer();
+
+            var completeLevelIds = player.CompleteLevels.Select(x => x.LevelId);
+            var level = await _repository.GetLevelAsync(completeLevelIds);
 
             return Ok(new LevelResponse().Map(level));
         }

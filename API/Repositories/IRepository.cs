@@ -9,6 +9,6 @@ namespace API.Repositories
     public interface IRepository
     {
         public Player GetPlayer();
-        public Level GetLevel();
+        public Task<Level> GetLevelAsync(IEnumerable<string> completeLevels);
     }
 }

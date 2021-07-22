@@ -1,16 +1,18 @@
-﻿using System;
+﻿using API.Models;
+using Microsoft.AspNetCore.Identity;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
 
 namespace Api.Models
 {
-    public class Player
+    public class Player : IdentityUser
     {
-        public Guid Id { get; set; }
-        public string UserName { get; set; }
+        [Required]
         public int Score { get; set; }
+
+        [Required]
         public int Stars { get; set; }
-        public IEnumerable<Guid> CompleteLevels { get; set; }
+        public IEnumerable<CompleteLevel> CompleteLevels { get; set; }
     }
 }

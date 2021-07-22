@@ -1,8 +1,13 @@
 ﻿using Api.Enums;
 using Api.Models;
+using API.DBContext;
+using API.Models;
+using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace API.Seeder
 {
@@ -40,5 +45,34 @@ namespace API.Seeder
 
             return output;
         }
+
+        public async Task SeedData(HangmanDbContext context, UserManager<Player> userManager)
+        {
+
+            if (!userManager.Users.Any())
+            {
+                var player = new Player
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    UserName = "DemoGuy",
+                    CompleteLevels = new List<CompleteLevel>(),
+                    Score = 125,
+                    Stars = 30
+                };
+
+               await  userManager.CreateAsync(player, "pa$$w0rd");
+            }
+
+            if (context.Levels.Any()) return;
+
+            context.Levels.AddRange(VeryEasyLevels);
+            context.Levels.AddRange(EasyLevels);
+            context.Levels.AddRange(MediumLevels);
+            context.Levels.AddRange(HardLevels);
+
+            context.SaveChanges();
+
+        }
+
     }
 }
