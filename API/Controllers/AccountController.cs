@@ -1,6 +1,10 @@
 ﻿using Api.Models;
+using Api.Responses;
 using API.Models;
 using API.Requests;
+using API.Responses;
+using API.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -8,6 +12,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace API.Controllers
@@ -18,11 +23,13 @@ namespace API.Controllers
     {
         private readonly UserManager<Player> _userManager;
         private readonly SignInManager<Player> _signinManager;
+        private readonly TokenService _tokenService;
 
-        public AccountController(UserManager<Player> userManager, SignInManager<Player> signinManager)
+        public AccountController(UserManager<Player> userManager, SignInManager<Player> signinManager, TokenService tokenService)
         {
             _userManager = userManager;
             _signinManager = signinManager;
+            _tokenService = tokenService;
         }
         [HttpPost("register")]
         public async Task<ActionResult> Register([FromBody] RegisterRequest request)
@@ -67,7 +74,22 @@ namespace API.Controllers
                 return Unauthorized();
             }
 
-            return Ok();
+            var loginResponse = new LoginResponse()
+            {
+                UserName = request.UserName,
+                Token = _tokenService.CreateToken(player)
+            };
+
+            return Ok(loginResponse);
+        }
+
+        [Authorize]
+        [HttpGet("getPlayer")]
+        public async Task<ActionResult> GetPlayer()
+        {
+            var player = await _userManager.FindByNameAsync(User.FindFirstValue(ClaimTypes.Name));
+
+            return Ok(new PlayerResponse().Map(player));
         }
     }
 }

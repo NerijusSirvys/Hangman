@@ -18,11 +18,11 @@ namespace Api.Responses
         {
             return new PlayerResponse
             {
-                Id = player.Id.ToString(),
+                Id = player.Id,
                 GameScore = player.Score,
                 Stars = player.Stars,
                 UserName = player.UserName,
-                NumberOfCompleteLevels = player.CompleteLevels.Count()
+                NumberOfCompleteLevels = player.CompleteLevels is null ? 0 : player.CompleteLevels.Count()
             };
         }
 
