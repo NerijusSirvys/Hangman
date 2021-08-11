@@ -1,18 +1,16 @@
-﻿using Api.Enums;
-using Api.Models;
+﻿using Api.Models;
 using API.Models;
 using API.Seeder;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace API.Repositories
 {
     public class MockGameRepo
     {
         public IEnumerable<Level> Levels { get; set; }
-        private Seed _seed;
+        private readonly Seed _seed;
 
         public MockGameRepo()
         {
@@ -20,7 +18,7 @@ namespace API.Repositories
             Levels = PopulateLevels();
         }
 
-        public Level GetLevelAsync(IEnumerable<Guid> completeLevelIds)
+        public Level GetLevelAsync()
         {
             var levels = Levels.ToList();
 
@@ -37,7 +35,7 @@ namespace API.Repositories
             {
                 Id = Guid.NewGuid().ToString(),
                 UserName = "DemoGuy",
-                CompleteLevels = new List<CompleteLevel>(),
+                Levels = new List<AsignedLevel>(),
                 Score = 125,
                 Stars = 30
             };
@@ -55,7 +53,6 @@ namespace API.Repositories
             levels.AddRange(_seed.HardLevels);
 
             return levels;
-
         }
     }
 }

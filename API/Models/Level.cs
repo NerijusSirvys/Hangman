@@ -1,10 +1,8 @@
-﻿using Api.Enums;
-using API.Services;
+﻿using API.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Api.Models
 {
@@ -14,15 +12,19 @@ namespace Api.Models
         public Guid Id { get; set; }
 
         [Required]
+        [Column(TypeName = "varchar(30)")]
         public string Secret { get; set; }
 
         [Required]
+        [Column(TypeName = "varchar(max)")]
         public string Clue { get; set; }
 
         [Required]
-        public IEnumerable<Hint> Hints { get; set; }
-
-        [Required]
+        [Column(TypeName = "varchar(30)")]
         public string Difficulty { get; set; }
+
+        public ICollection<Hint> Hints { get; set; }
+
+        public ICollection<AsignedLevel> AsignedLevels { get; set; }
     }
 }

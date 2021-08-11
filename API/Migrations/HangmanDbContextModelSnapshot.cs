@@ -19,23 +19,49 @@ namespace API.Migrations
                 .HasAnnotation("ProductVersion", "5.0.8")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("API.Models.CompleteLevel", b =>
+            modelBuilder.Entity("API.Models.AsignedLevel", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("LevelId")
+                    b.Property<Guid>("LevelId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("LevelStatus")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PlayerId")
+                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
+                    b.HasIndex("LevelId");
+
                     b.HasIndex("PlayerId");
 
-                    b.ToTable("CompleteLevels");
+                    b.ToTable("AssignedLevels");
+                });
+
+            modelBuilder.Entity("API.Models.OwnedHint", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("HintId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("Show")
+                        .HasColumnType("bit");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("HintId");
+
+                    b.ToTable("OwnedHints");
                 });
 
             modelBuilder.Entity("Api.Models.Hint", b =>
@@ -46,13 +72,10 @@ namespace API.Migrations
 
                     b.Property<string>("Clue")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("varchar(max)");
 
                     b.Property<Guid?>("LevelId")
                         .HasColumnType("uniqueidentifier");
-
-                    b.Property<bool>("Show")
-                        .HasColumnType("bit");
 
                     b.HasKey("Id");
 
@@ -69,15 +92,15 @@ namespace API.Migrations
 
                     b.Property<string>("Clue")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("varchar(max)");
 
                     b.Property<string>("Difficulty")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("varchar(30)");
 
                     b.Property<string>("Secret")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("varchar(30)");
 
                     b.HasKey("Id");
 
@@ -152,7 +175,22 @@ namespace API.Migrations
                         .HasDatabaseName("UserNameIndex")
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
-                    b.ToTable("AspNetUsers");
+                    b.ToTable("Player");
+                });
+
+            modelBuilder.Entity("AsignedLevelOwnedHint", b =>
+                {
+                    b.Property<Guid>("AssignedLevelsId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("OwnedHintsId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("AssignedLevelsId", "OwnedHintsId");
+
+                    b.HasIndex("OwnedHintsId");
+
+                    b.ToTable("AsignedLevelOwnedHint");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -286,11 +324,34 @@ namespace API.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("API.Models.CompleteLevel", b =>
+            modelBuilder.Entity("API.Models.AsignedLevel", b =>
                 {
-                    b.HasOne("Api.Models.Player", null)
-                        .WithMany("CompleteLevels")
-                        .HasForeignKey("PlayerId");
+                    b.HasOne("Api.Models.Level", "Level")
+                        .WithMany("AsignedLevels")
+                        .HasForeignKey("LevelId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Api.Models.Player", "Player")
+                        .WithMany("Levels")
+                        .HasForeignKey("PlayerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Level");
+
+                    b.Navigation("Player");
+                });
+
+            modelBuilder.Entity("API.Models.OwnedHint", b =>
+                {
+                    b.HasOne("Api.Models.Hint", "Hint")
+                        .WithMany("OwnedHints")
+                        .HasForeignKey("HintId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Hint");
                 });
 
             modelBuilder.Entity("Api.Models.Hint", b =>
@@ -298,6 +359,21 @@ namespace API.Migrations
                     b.HasOne("Api.Models.Level", null)
                         .WithMany("Hints")
                         .HasForeignKey("LevelId");
+                });
+
+            modelBuilder.Entity("AsignedLevelOwnedHint", b =>
+                {
+                    b.HasOne("API.Models.AsignedLevel", null)
+                        .WithMany()
+                        .HasForeignKey("AssignedLevelsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("API.Models.OwnedHint", null)
+                        .WithMany()
+                        .HasForeignKey("OwnedHintsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -351,14 +427,21 @@ namespace API.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("Api.Models.Hint", b =>
+                {
+                    b.Navigation("OwnedHints");
+                });
+
             modelBuilder.Entity("Api.Models.Level", b =>
                 {
+                    b.Navigation("AsignedLevels");
+
                     b.Navigation("Hints");
                 });
 
             modelBuilder.Entity("Api.Models.Player", b =>
                 {
-                    b.Navigation("CompleteLevels");
+                    b.Navigation("Levels");
                 });
 #pragma warning restore 612, 618
         }

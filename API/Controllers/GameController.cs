@@ -1,11 +1,9 @@
-﻿using Api.Models;
-using Api.Responses;
+﻿using Api.Responses;
 using API.Repositories;
+using API.Requests;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace Api.Controllers
@@ -22,17 +20,59 @@ namespace Api.Controllers
             _repository = repository;
         }
 
-
-
-        [HttpGet("newlevel")]
-        public async Task<IActionResult> GetNewLevelAsync()
+        [HttpPost("CompleteLevel")]
+        public async Task<IActionResult> CompleteLevel([FromBody] CompleteLevelRequest request)
         {
-            var player = _repository.GetPlayer();
+            var userId = GetUserId();
 
-            var completeLevelIds = player.CompleteLevels.Select(x => x.LevelId);
-            var level = await _repository.GetLevelAsync(completeLevelIds);
+            await _repository.AddCompleteLevelAsync(userId);
+
+            return Ok();
+        }
+
+        [HttpPost("addGameScore")]
+        public async Task<IActionResult> AddGameScore([FromBody] RewardRequest request)
+        {
+            var userId = GetUserId();
+
+            await _repository.AddGameScoreToThePlayerAsync(userId, request.Reward);
+
+            return Ok();
+        }
+
+        [HttpPost("addStars")]
+        public async Task<IActionResult> AddStars([FromBody] RewardRequest request)
+        {
+            var userID = GetUserId();
+
+            await _repository.AddStarsToThePlayerAsync(userID, request.Reward);
+
+            return Ok();
+        }
+
+        [HttpPost("removeStars")]
+        public async Task<IActionResult> RemoveStars([FromBody] StarDeductionRequest request)
+        {
+            var userID = GetUserId();
+
+            await _repository.RemoveStarsAsync(userID, request.Deduction);
+
+            return Ok();
+        }
+
+        [HttpGet("level")]
+        public async Task<IActionResult> GetLevel()
+        {
+            var userId = GetUserId();
+
+            var level = await _repository.GetLevelAsync(userId);
 
             return Ok(new LevelResponse().Map(level));
+        }
+        private string GetUserId()
+        {
+            return User.FindFirstValue(ClaimTypes.NameIdentifier);
+
         }
     }
 }

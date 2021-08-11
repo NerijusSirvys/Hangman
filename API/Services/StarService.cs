@@ -1,8 +1,5 @@
 ﻿using Api.Enums;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace API.Services
 {
@@ -11,26 +8,16 @@ namespace API.Services
         private const int InitialMultiplier = 2;
         private static int _multiplier = InitialMultiplier;
 
-        /// <summary>
-        /// Add basic star reward for based on level difficulty.
-        /// </summary>
-        /// <param name="levelDifficulty"></param>
-        /// <returns></returns>
         public static int Reward(string levelDifficulty)
         {
-            Enum.TryParse( levelDifficulty, out LevelDifficulty reward);
+            Enum.TryParse(levelDifficulty, out LevelDifficulty reward);
 
             return (int)reward;
         }
 
-        /// <summary>
-        /// Calculates cost of the hint
-        /// </summary>
-        /// <param name="levelDifficulty"></param>
-        /// <returns></returns>
         public static int Cost(string levelDifficulty)
         {
-            if(_multiplier > 4)
+            if (_multiplier > 4)
             {
                 _multiplier = InitialMultiplier;
             }
@@ -43,6 +30,5 @@ namespace API.Services
 
             return cost;
         }
-
     }
 }

@@ -16,9 +16,9 @@ namespace API.Seeder
         public IEnumerable<Level> VeryEasyLevels { get { return GetLevels(Paths.VeryEasy, nameof(LevelDifficulty.VeryEasy)); } }
         public IEnumerable<Level> EasyLevels { get { return GetLevels(Paths.Easy, nameof(LevelDifficulty.Easy)); } }
         public IEnumerable<Level> MediumLevels { get { return GetLevels(Paths.Medium, nameof(LevelDifficulty.Medium)); } }
-        public IEnumerable<Level> HardLevels { get { return GetLevels(Paths.Hasrd, nameof(LevelDifficulty.Hard)); } }
+        public IEnumerable<Level> HardLevels { get { return GetLevels(Paths.Hard, nameof(LevelDifficulty.Hard)); } }
 
-        private IEnumerable<Level> GetLevels(string path, string difficulty)
+        private static IEnumerable<Level> GetLevels(string path, string difficulty)
         {
             var lines = File.ReadLines(path);
 
@@ -48,19 +48,18 @@ namespace API.Seeder
 
         public async Task SeedData(HangmanDbContext context, UserManager<Player> userManager)
         {
-
             if (!userManager.Users.Any())
             {
                 var player = new Player
                 {
                     Id = Guid.NewGuid().ToString(),
                     UserName = "DemoGuy",
-                    CompleteLevels = new List<CompleteLevel>(),
+                    Levels = new List<AsignedLevel>(),
                     Score = 125,
                     Stars = 30
                 };
 
-               await  userManager.CreateAsync(player, "pa$$w0rd");
+                await userManager.CreateAsync(player, "pa$$w0rd");
             }
 
             if (context.Levels.Any()) return;
@@ -71,8 +70,6 @@ namespace API.Seeder
             context.Levels.AddRange(HardLevels);
 
             context.SaveChanges();
-
         }
-
     }
 }

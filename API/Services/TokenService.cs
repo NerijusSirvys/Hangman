@@ -4,10 +4,8 @@ using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
 using System.Security.Claims;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace API.Services
 {
@@ -20,6 +18,9 @@ namespace API.Services
             _config = config;
         }
 
+        /// <summary>
+        /// Create token key
+        /// </summary>
         public string CreateToken(Player player)
         {
             var claims = new List<Claim>

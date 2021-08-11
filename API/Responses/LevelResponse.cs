@@ -1,9 +1,8 @@
 ﻿using Api.Models;
+using API.Models;
 using API.Services;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace Api.Responses
 {
@@ -13,23 +12,30 @@ namespace Api.Responses
         public string Secret { get; set; }
         public string Clue { get; set; }
         public string Difficulty { get; set; }
-        public int StarAward { get; set; }
-        public int GameScoreAward { get; set; }
+        public int StarReward { get; set; }
+        public int GameScoreReward { get; set; }
         public IEnumerable<HintResponse> Hints { get; set; }
 
-        public LevelResponse Map(Level model)
+        public LevelResponse Map(AsignedLevel model)
         {
-            var hintResponses = model.Hints.Select(x => new HintResponse().Map(x, model.Difficulty));
+            //var hintResponses = model.OwnedHints.Select(x => new HintResponse().Map(x, model.Level.Difficulty));
+
+            var hintResponseCollection = new List<HintResponse>();
+
+            foreach (var item in model.OwnedHints)
+            {
+                hintResponseCollection.Add(new HintResponse().Map(item, model.Level.Difficulty));
+            }
 
             return new LevelResponse
             {
                 Id = model.Id.ToString(),
-                Clue = model.Clue,
-                Secret = model.Secret,
-                StarAward = StarService.Reward(model.Difficulty),
-                GameScoreAward = GameScoreService.Reward(model.Difficulty),
-                Hints = hintResponses,
-                Difficulty = model.Difficulty,
+                Clue = model.Level.Clue,
+                Secret = model.Level.Secret,
+                StarReward = StarService.Reward(model.Level.Difficulty),
+                GameScoreReward = GameScoreService.Reward(model.Level.Difficulty),
+                Hints = hintResponseCollection,
+                Difficulty = model.Level.Difficulty,
             };
         }
     }

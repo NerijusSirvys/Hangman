@@ -1,13 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace API.Responses
+﻿namespace API.Responses
 {
-    public class LoginResponse
+    public class LoginResponse<T>
     {
-        public string UserName { get; set; }
+        public LoginResponse(T data)
+        {
+            Data = data;
+        }
+
+        public T Data { get; set; }
         public string Token { get; set; }
     }
 }
