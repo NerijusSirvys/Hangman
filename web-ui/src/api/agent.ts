@@ -18,6 +18,10 @@ const levelService = {
   getLevelAsync: async () => {
     return await request.get<Level>("game/level");
   },
+
+  showHint: async (hintId: string) => {
+    return await request.post("Game/showHint", { hintId: hintId });
+  },
 };
 
 const playerService = {
@@ -29,20 +33,12 @@ const playerService = {
     await request.post<number>("game/removestars", { deduction: stars });
   },
 
-  UpdateOwnedHintsAsync: async (hintId: string) => {
-    //======================
-    // TODO:push hint to API
-    //======================
-  },
-
   addGameScoreAsync: async (score: number) => {
     await request.post<number>("game/addgamescore", { gameScoreReward: score });
   },
 
   addCompleteLevelsAsync: async (levelId: string) => {
-    await request.post<string>("game/completelevel", {
-      completeLevelId: levelId,
-    });
+    await request.get("game/completelevel");
   },
 };
 

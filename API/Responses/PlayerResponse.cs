@@ -1,4 +1,5 @@
 ﻿using Api.Models;
+using API.Enums;
 using System.Linq;
 
 namespace Api.Responses
@@ -19,7 +20,7 @@ namespace Api.Responses
                 GameScore = player.Score,
                 Stars = player.Stars,
                 UserName = player.UserName,
-                CompleteLevels = player.Levels is null ? 0 : player.Levels.Count()
+                CompleteLevels = (player.Levels?.Count(x=>x.LevelStatus == nameof(Status.Complete))) ?? 0
             };
         }
     }

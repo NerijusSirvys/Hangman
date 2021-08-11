@@ -20,12 +20,21 @@ namespace Api.Controllers
             _repository = repository;
         }
 
-        [HttpPost("CompleteLevel")]
-        public async Task<IActionResult> CompleteLevel([FromBody] CompleteLevelRequest request)
+        [HttpPost("showHint")]
+        public async Task<IActionResult> ShowHint( [FromBody] ShowHintRequest request)
         {
-            var userId = GetUserId();
+            var playerId = GetUserId();
+            await _repository.ShowNewHint(request.HintId, playerId);
 
-            await _repository.AddCompleteLevelAsync(userId);
+            return Ok();
+        }
+
+        [HttpGet("completeLevel")]
+        public async Task<IActionResult> CompleteLevel()
+        {
+            var playerId = GetUserId();
+
+            await _repository.AddCompleteLevelAsync(playerId);
 
             return Ok();
         }

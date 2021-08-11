@@ -1,9 +1,10 @@
-import { agent } from "../../api/agent";
 import { Level } from "../../interfaces/Level";
 import { processCorrectGuess, processFailedGuess } from "../state/gameSlice";
-import { showHint, updateMask } from "../state/levelSlice";
-import { addStars, removeStars } from "../state/playerSlice";
+import { updateMask } from "../state/levelSlice";
+import { addStars } from "../state/playerSlice";
 import store from "../store";
+import { levelService } from "./levelService";
+import { playerService } from "./playerService";
 
 // disables keyboard key once it used
 const disableKey = (e: any) => {
@@ -53,10 +54,8 @@ const processGuess = (letter: string, level: Level) => {
 };
 
 const purchaseHint = (hintId: string, hintPrice: number) => {
-  store.dispatch(showHint(hintId));
-
-  store.dispatch(removeStars(hintPrice));
-  agent.playerService.removeStars(hintPrice);
+  levelService.showHint(hintId);
+  playerService.spendStars(hintPrice);
 };
 
 const verifyLevelCompletion = (correctGuesses: number) => {
@@ -64,8 +63,8 @@ const verifyLevelCompletion = (correctGuesses: number) => {
 };
 
 export const gameEngine = {
-  disableKey: disableKey,
-  processGuess: processGuess,
-  verifyLevelCompletion: verifyLevelCompletion,
-  purchaseHint: purchaseHint,
+  disableKey,
+  processGuess,
+  verifyLevelCompletion,
+  purchaseHint,
 };

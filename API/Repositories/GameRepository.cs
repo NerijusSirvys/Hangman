@@ -27,7 +27,7 @@
         {
 
             var currentLevel = await _context.AssignedLevels.SingleOrDefaultAsync
-                (x => x.PlayerId.ToString() == playerId && x.LevelStatus == nameof(Status.Current));
+                (x => x.PlayerId == playerId && x.LevelStatus == nameof(Status.Current));
 
             currentLevel.LevelStatus = nameof(Status.Complete);
 
@@ -115,7 +115,7 @@
         /// </summary>
         public async Task<Player> GetPlayerByIdAsync(string playerId)
         {
-            return await _context.Players.FirstOrDefaultAsync(x => x.Id == playerId);
+            return await _context.Players.Include(x=>x.Levels).FirstOrDefaultAsync(x => x.Id == playerId);
         }
 
         /// <summary>
@@ -202,6 +202,21 @@
             var index = rnd.Next(0, levelsToDo.Count - 1);
 
             return levelsToDo[index];
+        }
+
+        /// <summary>
+        /// finds hint that player wiches to see and sets its show property to true
+        /// </summary>
+        public async Task ShowNewHint(string hintId, string playerId)
+        {
+            var currrentLevel = await _context.AssignedLevels
+            .Include(x=>x.OwnedHints).ThenInclude(x=>x.Hint)
+            .SingleOrDefaultAsync(x => x.PlayerId == playerId && x.LevelStatus == nameof(Status.Current));
+
+            var hint = currrentLevel.OwnedHints.SingleOrDefault(x => x.HintId.ToString() == hintId);
+            hint.Show = true;
+
+            await _context.SaveChangesAsync();
         }
     }
 }

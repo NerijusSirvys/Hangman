@@ -15,7 +15,7 @@ namespace Api.Responses
         {
             return new HintResponse()
             {
-                Id = model.Id.ToString(),
+                Id = model.HintId.ToString(),
                 Clue = model.Hint.Clue,
                 Price = StarService.Cost(levelDifficulty),
                 Show = model.Show

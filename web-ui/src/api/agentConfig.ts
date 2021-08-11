@@ -14,7 +14,13 @@ axios.interceptors.request.use((config) => {
   return config;
 });
 
+const headers = {
+  headers: {
+    "Content-Type": "application/json",
+  },
+};
+
 export const request = {
   get: <T>(url: string) => axios.get<T>(url),
-  post: <T>(url: string, body: {}) => axios.post<T>(url, body),
+  post: <T>(url: string, body: {}) => axios.post<T>(url, body, headers),
 };
