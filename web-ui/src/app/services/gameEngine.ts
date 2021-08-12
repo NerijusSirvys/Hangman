@@ -1,8 +1,14 @@
 import { Level } from "../../interfaces/Level";
-import { processCorrectGuess, processFailedGuess } from "../state/gameSlice";
+import {
+  isLoading,
+  processCorrectGuess,
+  processFailedGuess,
+  resetFailedGuesses,
+} from "../state/gameSlice";
 import { updateMask } from "../state/levelSlice";
 import { addStars } from "../state/playerSlice";
 import store from "../store";
+import { accountService } from "./accountService";
 import { levelService } from "./levelService";
 import { playerService } from "./playerService";
 
@@ -58,13 +64,39 @@ const purchaseHint = (hintId: string, hintPrice: number) => {
   playerService.spendStars(hintPrice);
 };
 
-const verifyLevelCompletion = (correctGuesses: number) => {
-  // store.dispatch(verifyLevelCompletion(correctGuesses));
+const loadLevel = () => {
+  store.dispatch(isLoading(true));
+  levelService.loadNewLevel().then(() => {
+    store.dispatch(resetFailedGuesses());
+    store.dispatch(isLoading(false));
+  });
+};
+
+const processLevelComplete = (
+  starReward: number,
+  gameScoreReward: number,
+  levelId: string
+) => {
+  playerService.addStarsToPlayer(starReward);
+  playerService.addGamescoreToPlayer(gameScoreReward);
+  playerService.addCompleteLevel(levelId);
+};
+
+// load player and level and once both are loaded, display to the user
+const reLogPlayer = async () => {
+  await Promise.all([
+    accountService.relogPlayer(),
+    levelService.loadNewLevel(),
+  ]).then(() => {
+    store.dispatch(isLoading(false));
+  });
 };
 
 export const gameEngine = {
   disableKey,
   processGuess,
-  verifyLevelCompletion,
   purchaseHint,
+  processLevelComplete,
+  loadLevel,
+  reLogPlayer,
 };

@@ -10,7 +10,6 @@ const initialState: Level = {
   hints: [],
   secretMask: [],
   starReward: 0,
-  isLoading: true,
   isComplete: false,
   leftToGuess: 0,
 };
@@ -30,7 +29,6 @@ const levelSlice = createSlice({
         ...action.payload,
         secretMask: maskSecret(action.payload.secret),
         leftToGuess: action.payload.secret.length,
-        isLoading: false,
         isComplete: false,
       };
     },

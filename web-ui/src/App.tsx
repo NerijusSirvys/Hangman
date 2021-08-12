@@ -2,8 +2,7 @@ import { useEffect } from "react";
 import { Container } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { accountService } from "./app/services/accountService";
-import { levelService } from "./app/services/levelService";
-import { playerService } from "./app/services/playerService";
+import { gameEngine } from "./app/services/gameEngine";
 import { userSession } from "./app/services/userSession";
 import { RootState } from "./app/store";
 import { GameBoard } from "./components/GameBoard";
@@ -23,19 +22,13 @@ function App() {
   // handle player re-log and level loading when browser is refreshed
   useEffect(() => {
     if (!userSession.tokenExpired() && !isLogedIn) {
-      // get current user and log the session in
-      accountService.relogPlayer();
+      gameEngine.reLogPlayer();
     }
-
-    // get level and add it to the state
-    levelService.loadNewLevel();
   }, [isLogedIn]);
 
   useEffect(() => {
     if (isLevelComplete) {
-      playerService.addStarsToPlayer(stars);
-      playerService.addGamescoreToPlayer(gameScoreReward);
-      playerService.addCompleteLevel(levelId);
+      gameEngine.processLevelComplete(stars, gameScoreReward, levelId);
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps

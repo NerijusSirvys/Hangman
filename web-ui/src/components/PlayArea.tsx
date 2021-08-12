@@ -6,7 +6,7 @@ import { Message, MessageType } from "./messages/Message";
 import { Quiz } from "./Quiz";
 
 const PlayArea: React.FC = () => {
-  const isLoading = useSelector((state: RootState) => state.level.isLoading);
+  const isLoading = useSelector((state: RootState) => state.game.isLoading);
   const isLevelComplete = useSelector(
     (state: RootState) => state.level.isComplete
   );

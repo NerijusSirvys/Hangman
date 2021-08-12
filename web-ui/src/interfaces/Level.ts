@@ -9,7 +9,6 @@ export interface Level {
   starReward: number;
   gameScoreReward: number;
   difficulty: string;
-  isLoading: boolean;
   isComplete: boolean;
   leftToGuess: number;
 }

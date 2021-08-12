@@ -1,26 +1,30 @@
+import { AxiosResponse } from "axios";
 import { agent } from "../../api/agent";
 import { FormModel } from "../../interfaces/FormModel";
+import { Login } from "../../interfaces/Login";
+import { Player } from "../../interfaces/Player";
 import { loadPlayer } from "../state/playerSlice";
 import store from "../store";
 import { userSession } from "./userSession";
 
 const loginPlayerAsync = async (body: FormModel) => {
-  const loginResponse = (await agent.accountService.LoginAsync(body)).data;
-
-  window.localStorage.setItem("token", loginResponse.token);
-
-  store.dispatch(loadPlayer(loginResponse.data));
-
-  userSession.loginSession();
+  await agent.accountService
+    .LoginAsync(body)
+    .then((response: AxiosResponse<Login>) => {
+      window.localStorage.setItem("token", response.data.token);
+      store.dispatch(loadPlayer(response.data.data));
+      userSession.loginSession();
+    });
 };
 
 const relogPlayer = async () => {
   userSession.loginSession();
 
-  const loginResponse = (await agent.accountService.getCurrentPlayerAsync())
-    .data;
-
-  store.dispatch(loadPlayer(loginResponse));
+  await agent.accountService
+    .getCurrentPlayerAsync()
+    .then((response: AxiosResponse<Player>) => {
+      store.dispatch(loadPlayer(response.data));
+    });
 };
 
 export const accountService = {

@@ -1,5 +1,5 @@
 import React from "react";
-import { levelService } from "../../app/services/levelService";
+import { gameEngine } from "../../app/services/gameEngine";
 
 enum MessageType {
   Loading,
@@ -12,7 +12,7 @@ interface MessageProps {
 }
 
 const handleClick = () => {
-  levelService.loadNewLevel();
+  gameEngine.loadLevel();
 };
 
 const Message: React.FC<MessageProps> = (props) => {
