@@ -23,7 +23,7 @@ const Hint: React.FC<HintProps> = (props) => {
   // this protects from trying to cheat by removing class from the button that dissables it
   const handleClick = () => {
     if (playerStars >= price) {
-      gameEngine.purchaseHint(id, price);
+      gameEngine.showHint(id, price);
     }
   };
 
@@ -35,11 +35,7 @@ const Hint: React.FC<HintProps> = (props) => {
     <>
       <p>Click SHOW to reveal this clue</p>
       <p>Cost: {price} stars</p>
-
-      <button
-        className={hideButton() ? "disabled" : ""}
-        onClick={() => handleClick()}
-      >
+      <button className={hideButton() ? "disabled" : ""} onClick={() => handleClick()}>
         SHOW
       </button>
     </>

@@ -8,7 +8,7 @@ interface KeyProps {
   letter: string;
 }
 
-const handleClick = (e: any, letter: string, level: Level) => {
+const handleClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>, letter: string, level: Level) => {
   gameEngine.disableKey(e);
   gameEngine.processGuess(letter, level);
 };
@@ -18,10 +18,7 @@ const Key: React.FC<KeyProps> = (props) => {
   const level = useSelector((state: RootState) => state.level);
 
   return (
-    <div
-      className="key-letter hover"
-      onClick={(e) => handleClick(e, letter, level)}
-    >
+    <div className="key-letter hover" onClick={(e) => handleClick(e, letter, level)}>
       <p>{letter}</p>
     </div>
   );

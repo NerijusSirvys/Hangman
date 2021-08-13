@@ -12,11 +12,11 @@ const sessionSlice = createSlice({
   name: "session",
   initialState: initialState,
   reducers: {
-    login: (state) => {
+    session_login: (state) => {
       state.isLogedIn = true;
     },
   },
 });
 
-export const { login } = sessionSlice.actions;
+export const { session_login } = sessionSlice.actions;
 export default sessionSlice.reducer;

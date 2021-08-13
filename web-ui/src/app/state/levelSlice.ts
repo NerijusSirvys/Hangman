@@ -24,7 +24,7 @@ const levelSlice = createSlice({
   name: "level",
   initialState: initialState,
   reducers: {
-    loadLevel: (state, action: PayloadAction<Level>) => {
+    level_loadLevel: (state, action: PayloadAction<Level>) => {
       return {
         ...action.payload,
         secretMask: maskSecret(action.payload.secret),
@@ -32,12 +32,12 @@ const levelSlice = createSlice({
         isComplete: false,
       };
     },
-    updateMask: (state, action: PayloadAction<number>) => {
+    level_updateMask: (state, action: PayloadAction<number>) => {
       state.secretMask[action.payload] = state.secret[action.payload];
       state.leftToGuess--;
       state.isComplete = state.leftToGuess === 0;
     },
-    showHint: (state, action: PayloadAction<string>) => {
+    level_showHint: (state, action: PayloadAction<string>) => {
       state.hints.forEach((hint) => {
         if (hint.id === action.payload) {
           hint.show = true;
@@ -47,5 +47,5 @@ const levelSlice = createSlice({
   },
 });
 
-export const { loadLevel, updateMask, showHint } = levelSlice.actions;
+export const { level_loadLevel, level_updateMask, level_showHint } = levelSlice.actions;
 export default levelSlice.reducer;

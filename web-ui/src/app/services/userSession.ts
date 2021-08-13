@@ -1,8 +1,10 @@
 import jwtDecode, { JwtPayload } from "jwt-decode";
-import { login } from "../state/sessionSlice";
-import store from "../store";
 
-const checkTokenExpiration = () => {
+/**
+ * Check if token is not expired
+ * @returns true if token is expired, false if not
+ */
+const isTokenExpired = () => {
   const token: string = window.localStorage.getItem("token") as string;
 
   if (token === null) {
@@ -16,11 +18,6 @@ const checkTokenExpiration = () => {
   }
 };
 
-const loginSession = () => {
-  store.dispatch(login());
-};
-
 export const userSession = {
-  tokenExpired: checkTokenExpiration,
-  loginSession: loginSession,
+  isTokenExpired,
 };

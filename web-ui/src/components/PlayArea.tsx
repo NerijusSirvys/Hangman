@@ -7,13 +7,8 @@ import { Quiz } from "./Quiz";
 
 const PlayArea: React.FC = () => {
   const isLoading = useSelector((state: RootState) => state.game.isLoading);
-  const isLevelComplete = useSelector(
-    (state: RootState) => state.level.isComplete
-  );
-
-  const isGameOver = useSelector(
-    (state: RootState) => state.game.availableGuesses === 0
-  );
+  const isLevelComplete = useSelector((state: RootState) => state.level.isComplete);
+  const isGameOver = useSelector((state: RootState) => state.game.availableGuesses === 0);
 
   if (isLoading) {
     return (

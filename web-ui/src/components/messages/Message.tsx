@@ -12,7 +12,7 @@ interface MessageProps {
 }
 
 const handleClick = () => {
-  gameEngine.loadLevel();
+  gameEngine.loadNewLevel();
 };
 
 const Message: React.FC<MessageProps> = (props) => {

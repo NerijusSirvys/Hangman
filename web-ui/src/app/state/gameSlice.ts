@@ -12,26 +12,21 @@ const gameSlice = createSlice({
   name: "game",
   initialState: initialState,
   reducers: {
-    processFailedGuess: (state) => {
+    game_processFailedGuess: (state) => {
       state.failedGuesses++;
       state.availableGuesses--;
     },
-    processCorrectGuess: (state, action: PayloadAction<number>) => {
+    game_processCorrectGuess: (state, action: PayloadAction<number>) => {
       state.correctGuesses += action.payload;
     },
-    isLoading: (state, action: PayloadAction<boolean>) => {
+    game_isLoading: (state, action: PayloadAction<boolean>) => {
       state.isLoading = action.payload;
     },
-    resetFailedGuesses: (state) => {
+    game_resetFailedGuesses: (state) => {
       state.failedGuesses = 0;
     },
   },
 });
 
-export const {
-  processFailedGuess,
-  processCorrectGuess,
-  isLoading,
-  resetFailedGuesses,
-} = gameSlice.actions;
+export const { game_processFailedGuess, game_processCorrectGuess, game_isLoading, game_resetFailedGuesses } = gameSlice.actions;
 export default gameSlice.reducer;
