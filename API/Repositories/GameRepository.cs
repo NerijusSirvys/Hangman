@@ -21,41 +21,23 @@
         }
 
         /// <summary>
-        /// Add complete level id to the player
+        /// Adds game score reward, star reward and updates complete level collection
         /// </summary>
-        public async Task AddCompleteLevelAsync(string playerId)
+        public async Task ProcessCompleteLevel(string playerId, int stars, int gameScore)
         {
-
             var currentLevel = await _context.AssignedLevels.SingleOrDefaultAsync
-                (x => x.PlayerId == playerId && x.LevelStatus == nameof(Status.Current));
+                    (x => x.PlayerId == playerId && x.LevelStatus == nameof(Status.Current));
 
             currentLevel.LevelStatus = nameof(Status.Complete);
 
-            await _context.SaveChangesAsync();
-        }
-
-        /// <summary>
-        /// Add game score to the player
-        /// </summary>
-        public async Task AddGameScoreToThePlayerAsync(string playerId, int gameScoreReward)
-        {
             var player = await _context.Players.FirstOrDefaultAsync(x => x.Id == playerId);
 
-            player.Score += gameScoreReward;
-
-            await _context.SaveChangesAsync();
-        }
-
-        /// <summary>
-        /// Adds star reward to the player
-        /// </summary>
-        public async Task AddStarsToThePlayerAsync(string playerId, int stars)
-        {
-            var player = await _context.Players.FirstOrDefaultAsync(x => x.Id == playerId);
-
+            player.Score += gameScore;
             player.Stars = stars;
 
             await _context.SaveChangesAsync();
+
+
         }
 
         /// <summary>
@@ -115,7 +97,7 @@
         /// </summary>
         public async Task<Player> GetPlayerByIdAsync(string playerId)
         {
-            return await _context.Players.Include(x=>x.Levels).FirstOrDefaultAsync(x => x.Id == playerId);
+            return await _context.Players.Include(x => x.Levels).FirstOrDefaultAsync(x => x.Id == playerId);
         }
 
         /// <summary>
@@ -165,8 +147,8 @@
         private async Task<AsignedLevel> GetCurrentLevel(string playerId)
         {
 
-            var currentLevel = await _context.AssignedLevels.Include(x=>x.Level)
-                .Include(x=>x.OwnedHints).ThenInclude(x=>x.Hint)
+            var currentLevel = await _context.AssignedLevels.Include(x => x.Level)
+                .Include(x => x.OwnedHints).ThenInclude(x => x.Hint)
                 .SingleOrDefaultAsync(x => x.PlayerId == playerId && x.LevelStatus == nameof(Status.Current));
 
 
@@ -210,7 +192,7 @@
         public async Task ShowNewHint(string hintId, string playerId)
         {
             var currrentLevel = await _context.AssignedLevels
-            .Include(x=>x.OwnedHints).ThenInclude(x=>x.Hint)
+            .Include(x => x.OwnedHints).ThenInclude(x => x.Hint)
             .SingleOrDefaultAsync(x => x.PlayerId == playerId && x.LevelStatus == nameof(Status.Current));
 
             var hint = currrentLevel.OwnedHints.SingleOrDefault(x => x.HintId.ToString() == hintId);

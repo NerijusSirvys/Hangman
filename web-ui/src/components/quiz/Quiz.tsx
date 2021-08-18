@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux";
-import { RootState } from "../app/store";
-import { ReactComponent as Mask } from "../images/mask.svg";
+import { RootState } from "../../app/store";
+import { ReactComponent as Mask } from "../../images/mask.svg";
+import "./styles.css";
 
 const Quiz: React.FC = () => {
   const clue = useSelector((state: RootState) => state.level.clue);

@@ -1,7 +1,13 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Level } from "../../interfaces/Level";
 
-const initialState: Level = {
+export interface LevelState extends Level {
+  secretMask: string[];
+  isComplete: boolean;
+  leftToGuess: number;
+}
+
+const initialState: LevelState = {
   id: "",
   secret: "",
   clue: "",

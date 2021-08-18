@@ -1,10 +1,12 @@
 import React from "react";
-import { gameEngine } from "../../app/services/gameEngine";
+import { levelService } from "../../app/services/levelService";
+import "./styles.css";
 
 enum MessageType {
   Loading,
   LevelComplete,
   GameOver,
+  Unauthorized,
 }
 
 interface MessageProps {
@@ -12,7 +14,7 @@ interface MessageProps {
 }
 
 const handleClick = () => {
-  gameEngine.loadNewLevel();
+  levelService.loadLevel(true);
 };
 
 const Message: React.FC<MessageProps> = (props) => {
@@ -35,7 +37,13 @@ const Message: React.FC<MessageProps> = (props) => {
     case MessageType.GameOver:
       return (
         <div className="message">
-          <h2>Game Over</h2>
+          <h2>Game Over...</h2>
+        </div>
+      );
+    case MessageType.Unauthorized:
+      return (
+        <div className="message fullscreen">
+          <h2>Access enied...</h2>
         </div>
       );
   }

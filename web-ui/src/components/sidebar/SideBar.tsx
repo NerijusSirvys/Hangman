@@ -1,6 +1,7 @@
 import React from "react";
-import { HangmanImage } from "./HangmanImage";
-import { Statistics } from "./Statistics";
+import { HangmanImage } from "./hangman/HangmanImage";
+import { Statistics } from "./statistics/Statistics";
+import "./styles.css";
 
 const SideBar: React.FC = () => {
   return (

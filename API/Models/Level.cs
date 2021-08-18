@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text;
 
 namespace Api.Models
 {
@@ -26,5 +27,7 @@ namespace Api.Models
         public ICollection<Hint> Hints { get; set; }
 
         public ICollection<AsignedLevel> AsignedLevels { get; set; }
+
+      
     }
 }

@@ -9,11 +9,12 @@ namespace API.Repositories
     {
 
         public Task<AsignedLevel> GetLevelAsync(string playerId);
-        Task AddStarsToThePlayerAsync(string playerId, int stars);
-        Task AddGameScoreToThePlayerAsync(string playerId, int gameScoreReward);
-        Task AddCompleteLevelAsync(string playerId);
+        //Task AddStarsToThePlayerAsync(string playerId, int stars);
+        //Task AddGameScoreToThePlayerAsync(string playerId, int gameScoreReward);
+        //Task AddCompleteLevelAsync(string playerId);
         Task<Player> GetPlayerByIdAsync(string playerId);
         Task RemoveStarsAsync(string playerId, int deduction);
         Task ShowNewHint(string hintId, string playerId);
+        Task ProcessCompleteLevel(string playerId, int stars, int gameScore);
     }
 }

@@ -7,6 +7,8 @@ namespace API.Requests
 {
     public class CompleteLevelRequest
     {
-        public string CompleteLevelId { get; set; }
+        public string LevelId { get; set; }
+        public int Stars { get; set; }
+        public int GameScore { get; set; }
     }
 }

@@ -1,24 +1,21 @@
 import React from "react";
-import { useSelector } from "react-redux";
-import { gameEngine } from "../../app/services/gameEngine";
-import { RootState } from "../../app/store";
-import { Level } from "../../interfaces/Level";
+import { DisableKey } from "./DisableKey.logic";
+import { ProcessGuess } from "./ProcessGuess.logic";
 
 interface KeyProps {
   letter: string;
 }
 
-const handleClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>, letter: string, level: Level) => {
-  gameEngine.disableKey(e);
-  gameEngine.processGuess(letter, level);
+const handleClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>, letter: string) => {
+  DisableKey(e);
+  ProcessGuess(letter);
 };
 
 const Key: React.FC<KeyProps> = (props) => {
   const { letter } = props;
-  const level = useSelector((state: RootState) => state.level);
 
   return (
-    <div className="key-letter hover" onClick={(e) => handleClick(e, letter, level)}>
+    <div className="key-letter hover" onClick={(e) => handleClick(e, letter)}>
       <p>{letter}</p>
     </div>
   );

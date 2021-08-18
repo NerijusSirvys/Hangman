@@ -1,11 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { userSession } from "../services/userSession";
 
 interface SessionState {
   isLogedIn: boolean;
 }
 
 const initialState: SessionState = {
-  isLogedIn: false,
+  isLogedIn: !userSession.isTokenExpired(),
 };
 
 const sessionSlice = createSlice({
@@ -15,8 +16,12 @@ const sessionSlice = createSlice({
     session_login: (state) => {
       state.isLogedIn = true;
     },
+
+    session_logout: (state) => {
+      state.isLogedIn = false;
+    },
   },
 });
 
-export const { session_login } = sessionSlice.actions;
+export const { session_login, session_logout } = sessionSlice.actions;
 export default sessionSlice.reducer;

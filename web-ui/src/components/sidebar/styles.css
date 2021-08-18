@@ -1,0 +1,13 @@
+/* side bar
+------------- */
+.sidebar {
+  grid-column: 2/3;
+  grid-row: 2/-1;
+  display: flex;
+  flex-direction: column;
+  justify-content: baseline;
+  gap: 0.5rem;
+  border-left: 7px solid transparent;
+  padding: 15px;
+  border-image: url(/src/images/stroke-vertical.png) 30 round;
+}

@@ -1,9 +1,11 @@
 import { useSelector } from "react-redux";
-import { RootState } from "../app/store";
-import { HintsContainer } from "./hints/HintsContainer";
-import { Keyboard } from "./keyboard/Keyboard";
-import { Message, MessageType } from "./messages/Message";
-import { Quiz } from "./Quiz";
+import { RootState } from "../../app/store";
+import { HintsContainer } from "../hints/HintsContainer";
+import { Keyboard } from "../keyboard/Keyboard";
+import { Message, MessageType } from "../messages/Message";
+import { Quiz } from "../quiz/Quiz";
+
+import "./styles.css";
 
 const PlayArea: React.FC = () => {
   const isLoading = useSelector((state: RootState) => state.game.isLoading);

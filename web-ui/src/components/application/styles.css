@@ -1,0 +1,73 @@
+:root {
+  --main-color: #c0c4c9;
+}
+
+#root {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #525252;
+  min-height: 600px;
+}
+
+body {
+  color: var(--main-color);
+}
+
+p {
+  margin: 0;
+}
+
+header,
+section {
+  padding: 15px;
+}
+
+/* Level 
+-------------*/
+
+/* effects
+------------------*/
+.hover {
+  transition: 300ms all;
+  border: 1px solid transparent;
+  border-radius: 5px;
+}
+.hover:hover {
+  border: 1px solid var(--main-color);
+  border-radius: 5px;
+}
+
+.hover,
+.hint button {
+  cursor: default;
+}
+
+@keyframes shake {
+  0% {
+    transform: skewX(-10deg);
+  }
+
+  25% {
+    transform: skewX(10deg);
+  }
+
+  50% {
+    transform: skewX(-10deg);
+  }
+
+  75% {
+    transform: skewX(10deg);
+  }
+
+  100% {
+    transform: skewX(-10deg);
+  }
+}
+
+/* Disable clickable element */
+.used {
+  border: 1px solid var(--main-color);
+  pointer-events: none;
+}

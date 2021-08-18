@@ -1,0 +1,27 @@
+/* login form
+----------------- */
+.login-form {
+  justify-self: center;
+  align-self: center;
+  grid-column: 1/-1;
+  grid-row: 1/-1;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  width: 25%;
+}
+
+.form-field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  height: 3rem;
+  justify-content: flex-end;
+}
+
+.form-input {
+  background-color: transparent !important;
+  border: none;
+  border-bottom: 2px solid var(--main-color);
+  color: var(--main-color);
+}

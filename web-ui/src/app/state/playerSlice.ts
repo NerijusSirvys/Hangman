@@ -1,7 +1,9 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Player } from "../../interfaces/Player";
 
-const initialState: Player = {
+interface PlayerState extends Player {}
+
+const initialState: PlayerState = {
   id: "",
   userName: "",
   gameScore: 0,
@@ -36,5 +38,11 @@ const playerSlice = createSlice({
   },
 });
 
-export const { player_loadPlayer, player_addStars, player_addScore, player_incrementCompleteLevel, player_removeStars } = playerSlice.actions;
+export const {
+  player_loadPlayer,
+  player_addStars,
+  player_addScore,
+  player_incrementCompleteLevel,
+  player_removeStars,
+} = playerSlice.actions;
 export default playerSlice.reducer;

@@ -47,7 +47,7 @@ namespace API.Controllers
 
             var player = await _repository.GetPlayerByIdAsync(playerId);
 
-            if(player is null)
+            if (player is null)
             {
                 return Unauthorized();
             }
@@ -58,10 +58,7 @@ namespace API.Controllers
         [HttpPost("login")]
         public async Task<ActionResult> Login([FromBody] LoginRequest request)
         {
-            var playerId = _userManager.FindByNameAsync(request.UserName).Result.Id;
-
-            // getting player sepperately because i need to have complete levels included
-            var player = _repository.GetPlayerByIdAsync(playerId).Result;
+            var player = await _userManager.FindByNameAsync(request.UserName);
 
             if (player is null)
             {
@@ -75,11 +72,14 @@ namespace API.Controllers
                 return Unauthorized();
             }
 
-            var playerResponse = new PlayerResponse().Map(player);
+            // getting player sepperately because i need to have complete levels included
+            var completePlayerModel = _repository.GetPlayerByIdAsync(player.Id).Result;
+
+            var playerResponse = new PlayerResponse().Map(completePlayerModel);
 
             var loginResponse = new LoginResponse<PlayerResponse>(playerResponse)
             {
-                Token = _tokenService.CreateToken(player)
+                Token = _tokenService.CreateToken(completePlayerModel)
             };
 
             return Ok(loginResponse);
@@ -108,7 +108,15 @@ namespace API.Controllers
                 return BadRequest(result.Errors.Select(x => x.Description));
             }
 
-            return Ok();
+            var playerResponse = new PlayerResponse().Map(player);
+
+            var loginResponse = new LoginResponse<PlayerResponse>(playerResponse)
+            {
+                Token = _tokenService.CreateToken(player)
+            };
+
+            return Ok(loginResponse);
+
         }
     }
 }

@@ -1,12 +1,13 @@
 import { useSelector } from "react-redux";
 import { RootState } from "../../app/store";
 import { Hint } from "./Hint";
+import "./styles.css";
 
 const HintsContainer: React.FC = () => {
   const hints = useSelector((state: RootState) => state.level.hints);
 
   return (
-    <section className="hint-container">
+    <section>
       <ul className="hints">
         {hints.map((hint) => {
           return (

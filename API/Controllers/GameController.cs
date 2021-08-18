@@ -26,37 +26,7 @@ namespace Api.Controllers
             var playerId = GetUserId();
             await _repository.ShowNewHint(request.HintId, playerId);
 
-            return Ok();
-        }
-
-        [HttpGet("completeLevel")]
-        public async Task<IActionResult> CompleteLevel()
-        {
-            var playerId = GetUserId();
-
-            await _repository.AddCompleteLevelAsync(playerId);
-
-            return Ok();
-        }
-
-        [HttpPost("addGameScore")]
-        public async Task<IActionResult> AddGameScore([FromBody] RewardRequest request)
-        {
-            var userId = GetUserId();
-
-            await _repository.AddGameScoreToThePlayerAsync(userId, request.Reward);
-
-            return Ok();
-        }
-
-        [HttpPost("addStars")]
-        public async Task<IActionResult> AddStars([FromBody] RewardRequest request)
-        {
-            var userID = GetUserId();
-
-            await _repository.AddStarsToThePlayerAsync(userID, request.Reward);
-
-            return Ok();
+            return NoContent();
         }
 
         [HttpPost("removeStars")]
@@ -66,7 +36,7 @@ namespace Api.Controllers
 
             await _repository.RemoveStarsAsync(userID, request.Deduction);
 
-            return Ok();
+            return NoContent();
         }
 
         [HttpGet("level")]
@@ -76,8 +46,25 @@ namespace Api.Controllers
 
             var level = await _repository.GetLevelAsync(userId);
 
+            if(level is null)
+            {
+                return NotFound();
+            }
+
             return Ok(new LevelResponse().Map(level));
         }
+
+        [HttpPost("prosesscompleteLevel")]
+        public async Task<IActionResult> ProcessCompleteLevel(CompleteLevelRequest request)
+        {
+            var playerId = GetUserId();
+
+            await _repository.ProcessCompleteLevel(playerId, request.Stars, request.GameScore);
+
+
+            return NoContent();
+        }
+
         private string GetUserId()
         {
             return User.FindFirstValue(ClaimTypes.NameIdentifier);

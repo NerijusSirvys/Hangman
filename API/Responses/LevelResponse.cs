@@ -3,6 +3,7 @@ using API.Models;
 using API.Services;
 using System.Collections.Generic;
 using System.Linq;
+using API.Extensions;
 
 namespace Api.Responses
 {
@@ -18,8 +19,6 @@ namespace Api.Responses
 
         public LevelResponse Map(AsignedLevel model)
         {
-            //var hintResponses = model.OwnedHints.Select(x => new HintResponse().Map(x, model.Level.Difficulty));
-
             var hintResponseCollection = new List<HintResponse>();
 
             foreach (var item in model.OwnedHints)
@@ -35,7 +34,7 @@ namespace Api.Responses
                 StarReward = StarService.Reward(model.Level.Difficulty),
                 GameScoreReward = GameScoreService.Reward(model.Level.Difficulty),
                 Hints = hintResponseCollection,
-                Difficulty = model.Level.Difficulty,
+                Difficulty = model.Level.Difficulty.SplitCamelCase()
             };
         }
     }

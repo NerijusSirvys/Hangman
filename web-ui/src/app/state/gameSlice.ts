@@ -1,7 +1,13 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { Game } from "../../interfaces/Game";
 
-const initialState: Game = {
+interface GameState {
+  failedGuesses: number;
+  correctGuesses: number;
+  availableGuesses: number;
+  isLoading: boolean;
+}
+
+const initialState: GameState = {
   correctGuesses: 0,
   failedGuesses: 0,
   availableGuesses: 6,
@@ -28,5 +34,10 @@ const gameSlice = createSlice({
   },
 });
 
-export const { game_processFailedGuess, game_processCorrectGuess, game_isLoading, game_resetFailedGuesses } = gameSlice.actions;
+export const {
+  game_processFailedGuess,
+  game_processCorrectGuess,
+  game_isLoading,
+  game_resetFailedGuesses,
+} = gameSlice.actions;
 export default gameSlice.reducer;
