@@ -24,23 +24,40 @@ section {
   padding: 15px;
 }
 
-/* Level 
--------------*/
+.game-board {
+  background: url(/src/images/black_board.svg);
+  background-position: center;
+  background-size: cover;
+  height: 100vh;
+  min-height: 600px;
+  max-height: 700px;
+  width: 100vw;
+  max-width: 1300px;
+  display: grid;
+  grid-template-columns: auto 200px;
+  grid-template-rows: 75px auto;
+  padding: 40px;
+  position: relative;
+}
 
 /* effects
 ------------------*/
-.hover {
+.button {
   transition: 300ms all;
   border: 1px solid transparent;
   border-radius: 5px;
 }
-.hover:hover {
+.button:hover {
   border: 1px solid var(--main-color);
   border-radius: 5px;
 }
 
-.hover,
-.hint button {
+p.link.button,
+a.button,
+button.button,
+button.link.button {
+  background: transparent;
+  color: var(--main-color);
   cursor: default;
 }
 
@@ -70,4 +87,62 @@ section {
 .used {
   border: 1px solid var(--main-color);
   pointer-events: none;
+}
+
+/* shared
+***************/
+
+.message {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  flex-direction: column;
+}
+
+.message p {
+  padding: 0.2rem 0.3rem;
+  margin-top: 1rem;
+}
+
+.fullscreen {
+  grid-column: 1/-1;
+  grid-row: 1/-1;
+}
+
+.links {
+  display: flex;
+  gap: 25px;
+  margin-top: 15px;
+}
+
+.links li {
+  list-style: none;
+}
+
+.link {
+  padding: 0.5rem 1rem;
+  display: flex;
+  align-self: center;
+}
+
+.button-row {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 0.5rem;
+}
+
+a {
+  text-decoration: none;
+  color: var(--main-color);
+}
+
+a:hover {
+  color: var(--main-color);
+}
+
+.links-center {
+  justify-content: center;
 }

@@ -35,7 +35,7 @@ const Hint: React.FC<HintProps> = (props) => {
     <>
       <p>Click SHOW to reveal this clue</p>
       <p>Cost: {price} stars</p>
-      <button className={hideButton() ? "disabled" : ""} onClick={() => handleClick()}>
+      <button className={hideButton() ? "disabled" : "button"} onClick={() => handleClick()}>
         SHOW
       </button>
     </>

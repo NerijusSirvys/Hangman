@@ -3,12 +3,14 @@ import gameReducer from "./state//gameSlice";
 import sessionReducer from "./state//sessionSlice";
 import levelReducer from "./state/levelSlice";
 import playerReducer from "./state/playerSlice";
+import errorReducer from "./state/errorSlice";
 
 const rootReducers = combineReducers({
   level: levelReducer,
   player: playerReducer,
   session: sessionReducer,
   game: gameReducer,
+  error: errorReducer,
 });
 
 const store = configureStore({

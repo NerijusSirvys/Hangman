@@ -1,9 +1,8 @@
 import { Header } from "../header/Header";
 import { PlayArea } from "../playArea/PlayArea";
 import { SideBar } from "../sidebar/SideBar";
-import "./styles.css";
 
-const GameBoard: React.FC = () => {
+export const GameBoard: React.FC = () => {
   return (
     <>
       <Header />
@@ -12,4 +11,3 @@ const GameBoard: React.FC = () => {
     </>
   );
 };
-export { GameBoard };

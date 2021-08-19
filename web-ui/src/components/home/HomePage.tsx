@@ -8,10 +8,10 @@ const HomePage: React.FC = () => {
     <div className="home-page">
       <h1>Welcome to the hangman game</h1>
       <div className="links">
-        <Link to={{ pathname: routes.register }} className="hover">
+        <Link to={{ pathname: routes.register }} className="link button">
           Register
         </Link>
-        <Link to={{ pathname: routes.login }} className="hover">
+        <Link to={{ pathname: routes.login }} className="link button">
           Log In
         </Link>
       </div>

@@ -24,7 +24,7 @@ namespace API.Middleware
             _env = env;
         }
 
-        public async Task InokeAsynk(HttpContext context)
+        public async Task InvokeAsync(HttpContext context)
         {
             try
             {

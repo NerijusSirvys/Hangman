@@ -52,6 +52,7 @@ namespace Api.Controllers
             }
 
             return Ok(new LevelResponse().Map(level));
+
         }
 
         [HttpPost("prosesscompleteLevel")]

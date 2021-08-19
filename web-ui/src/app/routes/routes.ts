@@ -1,13 +1,9 @@
-const homePage = "/";
-const register = "/register";
-const login = "/login";
-const gameBoard = "/gameboard";
-
 const routes = {
-  homePage,
-  login,
-  register,
-  gameBoard,
+  homePage: "/",
+  login: "/login",
+  register: "/register",
+  gameBoard: "/game-board",
+  serverError: "/server-error",
 };
 
 export { routes };

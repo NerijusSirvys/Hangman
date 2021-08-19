@@ -9,9 +9,6 @@ import { Login } from "../../interfaces/Login";
 import { RegistrationFormModel } from "../../interfaces/RegistrationFormModel";
 
 export const RegisterPlayer = async (values: RegistrationFormModel) => {
-  if (values.password !== values.confirmPassword) {
-    throw new Error("Passwords does not match");
-  }
   await agent.accountService.registerAsync(values).then((response: AxiosResponse<Login>) => {
     store.dispatch(game_isLoading(true));
     store.dispatch(player_loadPlayer(response.data.data));

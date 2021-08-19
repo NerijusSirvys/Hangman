@@ -1,12 +1,10 @@
 import React from "react";
 import { levelService } from "../../app/services/levelService";
-import "./styles.css";
 
 enum MessageType {
   Loading,
   LevelComplete,
   GameOver,
-  Unauthorized,
 }
 
 interface MessageProps {
@@ -38,12 +36,6 @@ const Message: React.FC<MessageProps> = (props) => {
       return (
         <div className="message">
           <h2>Game Over...</h2>
-        </div>
-      );
-    case MessageType.Unauthorized:
-      return (
-        <div className="message fullscreen">
-          <h2>Access enied...</h2>
         </div>
       );
   }

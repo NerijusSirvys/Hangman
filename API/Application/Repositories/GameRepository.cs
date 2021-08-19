@@ -35,20 +35,20 @@
             }
 
             // if player have no started levels, get him a new one
-            var newLevel = await GetRandomLevel(playerId);
+            var randomLevel = await GetRandomLevel(playerId);
 
-            if (newLevel is null)
+            if (randomLevel is null)
             {
                 return null;
             }
 
             var nextLevel = new AsignedLevel
             {
-                LevelId = newLevel.Id,
+                LevelId = randomLevel.Id,
                 PlayerId = playerId,
                 LevelStatus = nameof(Status.Current),
-                OwnedHints = GetOwnedHints(newLevel),
-                Level = newLevel
+                OwnedHints = GetOwnedHints(randomLevel),
+                Level = randomLevel
             };
 
             await _context.AssignedLevels.AddAsync(nextLevel);

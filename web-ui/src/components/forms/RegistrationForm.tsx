@@ -1,7 +1,8 @@
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import React from "react";
-import { RouteComponentProps, useHistory } from "react-router-dom";
+import { Link, RouteComponentProps, useHistory } from "react-router-dom";
 import * as Yup from "yup";
+import { history } from "../..";
 import { routes } from "../../app/routes/routes";
 import { RegistrationFormModel } from "../../interfaces/RegistrationFormModel";
 import { RegisterPlayer } from "./RegisterPlayer.logic";
@@ -10,7 +11,9 @@ import "./styles.css";
 const validationSchema = Yup.object({
   username: Yup.string().required("Username is required"),
   password: Yup.string().required("Password is required"),
-  confirmPassword: Yup.string().required("Password confirmation is required"),
+  confirmPassword: Yup.string()
+    .required("Password confirmation is required")
+    .oneOf([Yup.ref("password")], "Passwords does not match"),
 });
 
 const initialValues: RegistrationFormModel = {
@@ -19,7 +22,7 @@ const initialValues: RegistrationFormModel = {
   confirmPassword: "",
 };
 
-const handleSubmit = (values: RegistrationFormModel, history: RouteComponentProps["history"]) => {
+const handleSubmit = (values: RegistrationFormModel) => {
   RegisterPlayer(values)
     .then(() => {
       history.push(routes.gameBoard);
@@ -31,13 +34,11 @@ const handleSubmit = (values: RegistrationFormModel, history: RouteComponentProp
 };
 
 const RegistrationForm: React.FC = () => {
-  const history = useHistory();
-
   return (
     <Formik
       initialValues={initialValues}
       validationSchema={validationSchema}
-      onSubmit={(values) => handleSubmit(values, history)}
+      onSubmit={(values) => handleSubmit(values)}
     >
       <Form className="login-form">
         <div className="form-field-group">
@@ -65,8 +66,14 @@ const RegistrationForm: React.FC = () => {
             placeholder="Confirm password"
           />
         </div>
-
-        <button type="submit">Submit</button>
+        <div className="links links-center">
+          <Link to={routes.homePage} className="link button">
+            Back
+          </Link>
+          <button className="link button" type="submit">
+            Submit
+          </button>
+        </div>
       </Form>
     </Formik>
   );

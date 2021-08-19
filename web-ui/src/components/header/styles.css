@@ -4,19 +4,6 @@
   font-size: 1.5rem;
 }
 
-.links {
-  display: flex;
-  gap: 25px;
-}
-
-.links li {
-  list-style: none;
-}
-
-.links li p {
-  padding: 0.5rem 1rem;
-}
-
 .header {
   display: flex;
   justify-content: space-between;
@@ -24,4 +11,8 @@
   grid-row: 1/2;
   grid-column: 1/-1;
   border-image: url(/src/images/stroke-horizontal.png) 30 round;
+}
+
+.header .links {
+  margin: 0;
 }
