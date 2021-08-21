@@ -1,12 +1,11 @@
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import React from "react";
-import { Link, RouteComponentProps, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import * as Yup from "yup";
 import { history } from "../..";
 import { routes } from "../../app/routes/routes";
 import { RegistrationFormModel } from "../../interfaces/RegistrationFormModel";
 import { RegisterPlayer } from "./RegisterPlayer.logic";
-import "./styles.css";
 
 const validationSchema = Yup.object({
   username: Yup.string().required("Username is required"),
@@ -33,18 +32,18 @@ const handleSubmit = (values: RegistrationFormModel) => {
     });
 };
 
-const RegistrationForm: React.FC = () => {
+export const RegistrationForm: React.FC = () => {
   return (
     <Formik
       initialValues={initialValues}
       validationSchema={validationSchema}
       onSubmit={(values) => handleSubmit(values)}
     >
-      <Form className="login-form">
-        <div className="form-field-group">
-          <ErrorMessage name="username" />
+      <Form className="form">
+        <div className="form-row">
+          <ErrorMessage className="error-msg" name="username" />
           <Field
-            className="form-input"
+            className="input"
             id="username"
             type="text"
             name="username"
@@ -52,25 +51,25 @@ const RegistrationForm: React.FC = () => {
             autoComplete="off"
           />
         </div>
-        <div className="form-field-group">
-          <ErrorMessage name="password" />
-          <Field className="form-input" id="password" type="password" name="password" placeholder="Password" />
+        <div className="form-row">
+          <ErrorMessage className="error-msg" name="password" />
+          <Field className="input" id="password" type="password" name="password" placeholder="Password" />
         </div>
-        <div className="form-field-group">
-          <ErrorMessage name="confirmPassword" />
+        <div className="form-row">
+          <ErrorMessage className="error-msg" name="confirmPassword" />
           <Field
-            className="form-input"
+            className="input"
             id="confirmPassword"
             type="password"
             name="confirmPassword"
             placeholder="Confirm password"
           />
         </div>
-        <div className="links links-center">
-          <Link to={routes.homePage} className="link button">
+        <div className="button-row">
+          <Link to={routes.homePage} className="button">
             Back
           </Link>
-          <button className="link button" type="submit">
+          <button className="button" type="submit">
             Submit
           </button>
         </div>
@@ -78,5 +77,3 @@ const RegistrationForm: React.FC = () => {
     </Formik>
   );
 };
-
-export { RegistrationForm };

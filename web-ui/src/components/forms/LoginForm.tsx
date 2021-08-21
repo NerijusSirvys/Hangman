@@ -1,10 +1,10 @@
 import { ErrorMessage, Field, Form, Formik } from "formik";
+import { Link } from "react-router-dom";
 import * as Yup from "yup";
 import { history } from "../..";
 import { routes } from "../../app/routes/routes";
 import { FormModel } from "../../interfaces/FormModel";
 import { LoginPlayer } from "./LoginPlayer.logic";
-import "./styles.css";
 
 const validationSchema = Yup.object({
   username: Yup.string().required("Username required"),
@@ -22,18 +22,18 @@ const handleSubmit = (loginValues: FormModel) => {
   });
 };
 
-const LoginForm: React.FC = () => {
+export const LoginForm: React.FC = () => {
   return (
     <Formik
       initialValues={initialValues}
       validationSchema={validationSchema}
       onSubmit={(values: FormModel) => handleSubmit(values)}
     >
-      <Form className="login-form">
-        <div className="form-field-group">
-          <ErrorMessage name="username" />
+      <Form className="form">
+        <div className="form-row">
+          <ErrorMessage className="error-msg" name="username" />
           <Field
-            className="form-input"
+            className="input"
             id="username"
             type="text"
             name="username"
@@ -41,17 +41,19 @@ const LoginForm: React.FC = () => {
             autoComplete="off"
           />
         </div>
-        <div className="form-field-group">
-          <ErrorMessage name="password" />
-          <Field className="form-input" id="password" type="password" name="password" placeholder="Password" />
+        <div className="form-row">
+          <ErrorMessage className="error-msg" name="password" />
+          <Field className="input" id="password" type="password" name="password" placeholder="Password" />
         </div>
-
-        <button className="link button" type="submit">
-          Submit
-        </button>
+        <div className="button-row">
+          <Link to={routes.homePage} className="button">
+            Back
+          </Link>
+          <button className="button" type="submit">
+            Submit
+          </button>
+        </div>
       </Form>
     </Formik>
   );
 };
-
-export { LoginForm };

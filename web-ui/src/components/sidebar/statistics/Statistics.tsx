@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../app/store";
 
-const Statistics: React.FC = () => {
+export const Statistics: React.FC = () => {
   const player = useSelector((state: RootState) => state.player);
   const difficulty = useSelector((state: RootState) => state.level.difficulty);
 
@@ -15,5 +15,3 @@ const Statistics: React.FC = () => {
     </div>
   );
 };
-
-export { Statistics };

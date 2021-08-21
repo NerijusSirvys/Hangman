@@ -11,7 +11,6 @@ import { HomePage } from "../home/HomePage";
 import { ProcessLevelComplete } from "./ProcessCompleteLevel.logic";
 import { RelogPlayer } from "./RelogPlayer.logic";
 import "react-toastify/dist/ReactToastify.minimal.css";
-import "./styles.css";
 import { NotFound } from "../errors/NotFound";
 import { ServerError } from "../errors/ServerError";
 import { Unauthorized } from "../errors/Unauthorized";
@@ -38,7 +37,7 @@ function App() {
 
   return (
     <>
-      <ToastContainer position="top-center" hideProgressBar />
+      <ToastContainer position="top-center" autoClose={1500} hideProgressBar />
       <main className="game-board">
         <Switch>
           <Route exact path={routes.homePage} component={HomePage} />

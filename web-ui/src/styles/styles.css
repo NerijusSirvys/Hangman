@@ -1,0 +1,365 @@
+/*    TABLE OF CONTENTS     */
+/*==========================*/
+/*    1. Global             */
+/*    2. Button             */
+/*    3. Game Board         */
+/*    4. Home Page          */
+/*    5. Forms              */
+/*    6. Keyboard           */
+/*    7. Hints              */
+/*    8. Quiz               */
+/*    9. Header             */
+/*    10. Messages          */
+/*    11. Play Area         */
+/*    12. Sidebar           */
+/*    13. Hangman Image     */
+/*==========================*/
+/*==========================*/
+/*==========================*/
+
+/* Global
+**************/
+:root {
+  --main-color: #c0c4c9;
+  --base-font-size: 17px;
+  --button-padding: 0.5rem 0.7rem;
+}
+
+* {
+  font-size: var(--base-font-size);
+  font-family: "Patrick Hand SC", cursive;
+}
+
+body {
+  color: var(--main-color);
+  margin: 0;
+  background-color: #525252;
+}
+
+button {
+  background-color: transparent;
+  color: var(--main-color);
+}
+
+p {
+  margin: 0;
+}
+
+ul {
+  list-style: none;
+}
+
+#root {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+header,
+section {
+  padding: 15px;
+}
+
+/* Button
+  ------------------*/
+.button-row {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 0.5rem;
+}
+
+.button {
+  transition: 300ms all;
+  border: 1px solid transparent;
+  padding: var(--button-padding);
+  border-radius: 5px;
+}
+.button:hover {
+  border: 1px solid var(--main-color);
+  border-radius: 5px;
+  cursor: default;
+}
+
+.fullscreen {
+  grid-column: 1/-1;
+  grid-row: 1/-1;
+}
+
+a {
+  text-decoration: none;
+  color: var(--main-color);
+}
+
+a:hover {
+  color: var(--main-color);
+}
+
+.links-center {
+  justify-content: center;
+}
+/* --------------------------------------------------- */
+
+/* Game Board
+******************/
+.game-board {
+  background: url(/src/images/black_board.svg);
+  background-position: center;
+  background-size: cover;
+  height: 100vh;
+  min-height: 600px;
+  max-height: 650px;
+  width: 100vw;
+  max-width: 1300px;
+  display: grid;
+  grid-template-columns: auto 230px;
+  grid-template-rows: 75px auto;
+  padding: 40px;
+  position: relative;
+}
+
+/* Home Page
+*****************/
+.home-page {
+  grid-column: 1/-1;
+  grid-row: 1/-1;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.home-page .title {
+  font-size: 2.3rem;
+}
+
+.home-page .button-row {
+  display: flex;
+  gap: 25px;
+  margin-top: 15px;
+}
+
+.button-row .button {
+  padding: 0.5rem 1rem;
+  display: flex;
+  align-self: center;
+}
+
+/* Forms
+*************/
+.form {
+  justify-self: center;
+  align-self: center;
+  grid-column: 1/-1;
+  grid-row: 1/-1;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  width: 25%;
+}
+
+.button {
+  transition: 300ms all;
+  border: 1px solid transparent;
+  border-radius: 5px;
+}
+.button:hover {
+  border: 1px solid var(--main-color);
+  border-radius: 5px;
+  cursor: default;
+}
+
+.form-row {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  height: 3rem;
+  justify-content: flex-end;
+}
+
+.form-row .input {
+  background-color: transparent !important;
+  border: none;
+  border-bottom: 2px solid var(--main-color);
+  color: var(--main-color);
+  padding: 10px 5px;
+}
+
+/* Keyboard
+****************/
+.keyboard {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: 1.5rem;
+}
+
+.keyboard-row {
+  display: flex;
+  justify-content: center;
+}
+
+.key-letter {
+  display: flex;
+  padding: 0.5rem;
+  margin: 0 0.3rem;
+}
+
+/* Disable clickable element */
+.used {
+  outline: 1px solid var(--main-color);
+  pointer-events: none;
+}
+
+/* Hints
+*************/
+.hint {
+  padding: 0.3rem 0;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  height: 30px;
+}
+
+.hint .button {
+  display: flex;
+  align-self: center;
+  justify-self: center;
+  font-size: 0.6rem;
+  background-color: transparent;
+  color: var(--main-color);
+  border: 1px solid var(--main-color);
+  cursor: default;
+}
+
+.hint .button:hover {
+  letter-spacing: 2px;
+}
+
+.hint .button.disabled {
+  text-decoration: line-through;
+  animation: none;
+  pointer-events: none;
+}
+
+/* Quiz
+************/
+.quiz-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.quiz-container .clue {
+  font-size: 1.3rem;
+}
+
+/* question mark icons */
+h3 svg {
+  height: 2rem;
+}
+
+.quiz-container .secret {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.letter {
+  height: 2rem;
+  width: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  margin-left: 3%;
+  margin-right: 3%;
+}
+
+/* Header
+**************/
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 7px solid transparent;
+  grid-row: 1/2;
+  grid-column: 1/-1;
+  border-image: url(/src/images/stroke-horizontal.png) 30 round;
+}
+
+.header .username {
+  font-size: 2rem;
+}
+
+.header .links {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+.header .links p {
+  font-size: 1.1rem;
+}
+
+/* Messages
+****************/
+.message {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  flex-direction: column;
+}
+
+.message .title {
+  font-size: 2.2rem;
+}
+
+/* Play Area
+*****************/
+.play-area {
+  grid-row: 2 / -1;
+  grid-column: 1/2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Sidebar
+***************/
+.sidebar {
+  grid-column: 2/3;
+  grid-row: 2/-1;
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem;
+  border-left: 7px solid transparent;
+  padding: 15px;
+  border-image: url(/src/images/stroke-vertical.png) 30 round;
+}
+
+.sidebar .statistics p {
+  margin: 10px 0;
+}
+
+/* Hangman image
+*********************/
+.hangman {
+  display: flex;
+  align-items: center;
+}
+.hangman img {
+  width: 100%;
+  height: auto;
+}

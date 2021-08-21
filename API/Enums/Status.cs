@@ -8,6 +8,6 @@ namespace API.Enums
     public enum Status
     {
         Current,
-        Complete
+        Complete,
     }
 }

@@ -66,6 +66,24 @@ namespace Api.Controllers
             return NoContent();
         }
 
+        [HttpGet("restart")]
+        public async Task<IActionResult> Reset()
+        {
+            var userId = GetUserId();
+            await _repository.ResetLevel(userId);
+
+            var level = await _repository.GetLevelAsync(userId);
+
+            if (level is null)
+            {
+                return NotFound();
+            }
+
+            return Ok(new LevelResponse().Map(level));
+
+        }
+
+
         private string GetUserId()
         {
             return User.FindFirstValue(ClaimTypes.NameIdentifier);

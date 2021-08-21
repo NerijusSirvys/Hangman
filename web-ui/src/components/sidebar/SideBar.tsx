@@ -1,9 +1,8 @@
 import React from "react";
 import { HangmanImage } from "./hangman/HangmanImage";
 import { Statistics } from "./statistics/Statistics";
-import "./styles.css";
 
-const SideBar: React.FC = () => {
+export const SideBar: React.FC = () => {
   return (
     <aside className="sidebar">
       <Statistics />
@@ -11,5 +10,3 @@ const SideBar: React.FC = () => {
     </aside>
   );
 };
-
-export { SideBar };

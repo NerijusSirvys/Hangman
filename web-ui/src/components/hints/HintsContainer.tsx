@@ -1,9 +1,8 @@
 import { useSelector } from "react-redux";
 import { RootState } from "../../app/store";
 import { Hint } from "./Hint";
-import "./styles.css";
 
-const HintsContainer: React.FC = () => {
+export const HintsContainer: React.FC = () => {
   const hints = useSelector((state: RootState) => state.level.hints);
 
   return (
@@ -20,5 +19,3 @@ const HintsContainer: React.FC = () => {
     </section>
   );
 };
-
-export { HintsContainer };

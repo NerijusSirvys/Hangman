@@ -81,8 +81,15 @@
             player.Stars = stars;
 
             await _context.SaveChangesAsync();
+        }
 
+        public async Task ResetLevel(string playerId)
+        {
+            var currentLevel = await _context.AssignedLevels
+                .SingleOrDefaultAsync(x => x.PlayerId == playerId && x.LevelStatus == nameof(Status.Current));
 
+            _context.AssignedLevels.Remove(currentLevel);
+            await _context.SaveChangesAsync();
         }
 
         /// <summary>
@@ -204,5 +211,7 @@
 
             return levelsToDo[index];
         }
+
+
     }
 }

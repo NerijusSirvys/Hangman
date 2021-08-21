@@ -37,9 +37,28 @@ const loadLevel = async (delayed: boolean = false) => {
   });
 };
 
+const restartLevel = async () => {
+  const initialDelay = 2000;
+  let delay = 0;
+  const timeBeforeLoading = Date.now();
+
+  await agent.levelService.restartAsync().then((response: AxiosResponse<Level>) => {
+    store.dispatch(level_loadLevel(response.data));
+    const timeAfterLoading = Date.now();
+    const loadingTime = timeAfterLoading - timeBeforeLoading;
+    if (initialDelay - loadingTime > 0) {
+      delay = initialDelay - loadingTime;
+    }
+    setTimeout(() => {
+      store.dispatch(game_isLoading(false));
+    }, delay);
+  });
+};
+
 const levelService = {
   showHint,
   loadLevel,
+  restartLevel,
 };
 
 export { levelService };

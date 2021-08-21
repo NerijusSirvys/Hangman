@@ -22,6 +22,10 @@ const gameSlice = createSlice({
       state.failedGuesses++;
       state.availableGuesses--;
     },
+    game_reset: (state) => {
+      return initialState;
+    },
+
     game_processCorrectGuess: (state, action: PayloadAction<number>) => {
       state.correctGuesses += action.payload;
     },
@@ -36,6 +40,7 @@ const gameSlice = createSlice({
 
 export const {
   game_processFailedGuess,
+  game_reset,
   game_processCorrectGuess,
   game_isLoading,
   game_resetFailedGuesses,

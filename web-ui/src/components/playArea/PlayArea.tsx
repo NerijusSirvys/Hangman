@@ -2,10 +2,9 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../app/store";
 import { HintsContainer } from "../hints/HintsContainer";
 import { Keyboard } from "../keyboard/Keyboard";
-import { Message, MessageType } from "../messages/Message";
+import { GameOverMessage } from "../messages/GameOverMessage";
+import { Message } from "../messages/Message";
 import { Quiz } from "../quiz/Quiz";
-
-import "./styles.css";
 
 const PlayArea: React.FC = () => {
   const isLoading = useSelector((state: RootState) => state.game.isLoading);
@@ -13,27 +12,15 @@ const PlayArea: React.FC = () => {
   const isGameOver = useSelector((state: RootState) => state.game.availableGuesses === 0);
 
   if (isLoading) {
-    return (
-      <>
-        <Message type={MessageType.Loading} />
-      </>
-    );
+    return <Message message="Loading..." />;
   }
 
   if (isLevelComplete) {
-    return (
-      <>
-        <Message type={MessageType.LevelComplete} />
-      </>
-    );
+    return <Message message="Level Complete..." button={true} />;
   }
 
   if (isGameOver) {
-    return (
-      <>
-        <Message type={MessageType.GameOver} />
-      </>
-    );
+    return <GameOverMessage />;
   }
 
   return (

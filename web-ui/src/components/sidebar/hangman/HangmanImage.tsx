@@ -1,6 +1,5 @@
 import { useSelector } from "react-redux";
 import { RootState } from "../../../app/store";
-import "./styles.css";
 
 import hangman_0 from "../../../images/character/hangman-0.png";
 import hangman_2 from "../../../images/character/hangman-2.png";
@@ -12,7 +11,7 @@ import hangman_6 from "../../../images/character/hangman-6.png";
 
 const hangman = [hangman_6, hangman_5, hangman_4, hangman_3, hangman_2, hangman_1, hangman_0];
 
-const HangmanImage: React.FC = () => {
+export const HangmanImage: React.FC = () => {
   const imageIndex = useSelector((state: RootState) => state.game.failedGuesses);
 
   return (
@@ -21,5 +20,3 @@ const HangmanImage: React.FC = () => {
     </div>
   );
 };
-
-export { HangmanImage };

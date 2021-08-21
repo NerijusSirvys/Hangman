@@ -1,24 +1,23 @@
 import { Key } from "./Key";
-import "./styles.css";
 
 const topRow = ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"];
 const middleRow = ["A", "S", "D", "F", "G", "H", "J", "K", "L"];
 const bottomRow = ["Z", "X", "C", "V", "B", "N", "M"];
 
-const Keyboard: React.FC = () => {
+export const Keyboard: React.FC = () => {
   return (
-    <section className="keyboard-container">
-      <div className="key-row">
+    <section className="keyboard">
+      <div className="keyboard-row">
         {topRow.map((key) => {
           return <Key key={key} letter={key} />;
         })}
       </div>
-      <div className="key-row">
+      <div className="keyboard-row">
         {middleRow.map((key) => {
           return <Key key={key} letter={key} />;
         })}
       </div>
-      <div className="key-row">
+      <div className="keyboard-row">
         {bottomRow.map((key) => {
           return <Key key={key} letter={key} />;
         })}
@@ -26,5 +25,3 @@ const Keyboard: React.FC = () => {
     </section>
   );
 };
-
-export { Keyboard };

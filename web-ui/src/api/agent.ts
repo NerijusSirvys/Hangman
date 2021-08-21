@@ -24,6 +24,10 @@ const levelService = {
     return await request.get<Level>("game/level");
   },
 
+  restartAsync: async () => {
+    return await request.get<Level>("game/restart");
+  },
+
   showHintAsync: async (hintId: string) => {
     return await request.post("Game/showHint", { hintId: hintId });
   },
