@@ -1,4 +1,4 @@
-import { CompleteLevelData } from "../components/application/ProcessCompleteLevel.logic";
+import { CompleteLevelModel } from "../interfaces/CompleteLevelModel";
 import { FormModel } from "../interfaces/FormModel";
 import { Level } from "../interfaces/Level";
 import { Login } from "../interfaces/Login";
@@ -12,10 +12,6 @@ const accountService = {
 
   registerAsync: async (body: FormModel) => {
     return await request.post<Login>("account/register", body);
-  },
-
-  getCurrentPlayerAsync: async () => {
-    return await request.get<Player>("account/getplayer");
   },
 };
 
@@ -34,6 +30,10 @@ const levelService = {
 };
 
 const playerService = {
+  getCurrentPlayerAsync: async () => {
+    return await request.get<Player>("account/getplayer");
+  },
+
   addStarsAsync: async (stars: number) => {
     await request.post<number>("game/addstars", { reward: stars });
   },
@@ -46,8 +46,8 @@ const playerService = {
     await request.get("game/completelevel");
   },
 
-  processCompleteLevel: async (data: CompleteLevelData) => {
-    await request.post<CompleteLevelData>("game/prosesscompleteLevel", data);
+  processCompleteLevel: async (data: CompleteLevelModel) => {
+    await request.post<CompleteLevelModel>("game/prosesscompleteLevel", data);
   },
 
   removeStarsAsync: async (stars: number) => {

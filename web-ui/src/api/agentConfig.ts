@@ -1,9 +1,10 @@
-import axios, { AxiosError } from "axios";
+import axios, { AxiosError, AxiosResponse } from "axios";
 import { toast } from "react-toastify";
 import { history } from "..";
 import { routes } from "../app/routes/routes";
-import { error_setError } from "../app/state/errorSlice";
-import store from "../app/store";
+import { errorState } from "../app/state/stateService";
+import { Level } from "../interfaces/Level";
+import { Player } from "../interfaces/Player";
 
 // base api URL
 axios.defaults.baseURL = "https://localhost:5001/api/";
@@ -20,7 +21,7 @@ axios.interceptors.request.use((config) => {
 });
 
 axios.interceptors.response.use(
-  (response) => {
+  (response: AxiosResponse<Level | Player>) => {
     return response;
   },
   (error: AxiosError) => {
@@ -36,7 +37,7 @@ axios.interceptors.response.use(
         toast.dark("not found");
         break;
       case 500:
-        store.dispatch(error_setError(data));
+        errorState.set(data);
         history.push(routes.serverError);
         break;
     }

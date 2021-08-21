@@ -13,15 +13,16 @@ const sessionSlice = createSlice({
   name: "session",
   initialState: initialState,
   reducers: {
-    session_login: (state) => {
+    login: (state) => {
       state.isLogedIn = true;
     },
 
-    session_logout: (state) => {
+    logout: (state) => {
       state.isLogedIn = false;
     },
   },
 });
 
-export const { session_login, session_logout } = sessionSlice.actions;
+export const { login, logout } = sessionSlice.actions;
+
 export default sessionSlice.reducer;

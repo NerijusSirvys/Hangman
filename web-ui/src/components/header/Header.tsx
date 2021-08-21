@@ -1,13 +1,9 @@
 import { useSelector } from "react-redux";
-import { history } from "../..";
-import { userSession } from "../../app/services/userSession";
-import { session_logout } from "../../app/state/sessionSlice";
-import store, { RootState } from "../../app/store";
+import { engine } from "../../app/services/engine";
+import { RootState } from "../../app/store";
 
 const handleClick = () => {
-  userSession.removeToken();
-  store.dispatch(session_logout());
-  history.push("/");
+  engine.logOutPlayer();
 };
 
 export const Header: React.FC = () => {

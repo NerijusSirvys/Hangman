@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import store from "../store";
 
 interface GameState {
   failedGuesses: number;
@@ -18,31 +19,26 @@ const gameSlice = createSlice({
   name: "game",
   initialState: initialState,
   reducers: {
-    game_processFailedGuess: (state) => {
+    processFailedGuess: (state) => {
       state.failedGuesses++;
       state.availableGuesses--;
     },
-    game_reset: (state) => {
+    reset: (state) => {
       return initialState;
     },
 
-    game_processCorrectGuess: (state, action: PayloadAction<number>) => {
+    processCorrectGuess: (state, action: PayloadAction<number>) => {
       state.correctGuesses += action.payload;
     },
-    game_isLoading: (state, action: PayloadAction<boolean>) => {
+    isLoading: (state, action: PayloadAction<boolean>) => {
       state.isLoading = action.payload;
     },
-    game_resetFailedGuesses: (state) => {
+    resetFailedGuesses: (state) => {
       state.failedGuesses = 0;
     },
   },
 });
 
-export const {
-  game_processFailedGuess,
-  game_reset,
-  game_processCorrectGuess,
-  game_isLoading,
-  game_resetFailedGuesses,
-} = gameSlice.actions;
+export const { processFailedGuess, reset, processCorrectGuess, isLoading, resetFailedGuesses } = gameSlice.actions;
+
 export default gameSlice.reducer;

@@ -8,12 +8,11 @@ import { LoginForm } from "../forms/LoginForm";
 import { RegistrationForm } from "../forms/RegistrationForm";
 import { GameBoard } from "../gameboard/GameBoard";
 import { HomePage } from "../home/HomePage";
-import { ProcessLevelComplete } from "./ProcessCompleteLevel.logic";
-import { RelogPlayer } from "./RelogPlayer.logic";
 import "react-toastify/dist/ReactToastify.minimal.css";
 import { NotFound } from "../errors/NotFound";
 import { ServerError } from "../errors/ServerError";
 import { Unauthorized } from "../errors/Unauthorized";
+import { engine } from "../../app/services/engine";
 
 function App() {
   const isLevelComplete = useSelector((state: RootState) => state.level.isComplete);
@@ -23,14 +22,14 @@ function App() {
   // handle player re-log and level loading when browser is refreshed
   useEffect(() => {
     if (isLogedIn) {
-      RelogPlayer();
+      engine.returnPlayer();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
     if (isLevelComplete) {
-      ProcessLevelComplete();
+      engine.processLevelCompletion();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isLevelComplete]);

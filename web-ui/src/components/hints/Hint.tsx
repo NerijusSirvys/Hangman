@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import { engine } from "../../app/services/engine";
 import { RootState } from "../../app/store";
-import { ShowHint } from "./ShowHint.logic";
 
 interface HintProps {
   id: string;
@@ -22,9 +22,7 @@ export const Hint: React.FC<HintProps> = (props) => {
   // check if player have enough stars to pay for the hint
   // this protects from trying to cheat by removing class from the button that dissables it
   const handleClick = () => {
-    if (playerStars >= price) {
-      ShowHint(id, price);
-    }
+    playerStars >= price && engine.showHint(id, price);
   };
 
   if (show) {

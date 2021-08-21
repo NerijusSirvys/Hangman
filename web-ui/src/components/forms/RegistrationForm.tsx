@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 import * as Yup from "yup";
 import { history } from "../..";
 import { routes } from "../../app/routes/routes";
+import { engine } from "../../app/services/engine";
 import { RegistrationFormModel } from "../../interfaces/RegistrationFormModel";
-import { RegisterPlayer } from "./RegisterPlayer.logic";
 
 const validationSchema = Yup.object({
   username: Yup.string().required("Username is required"),
@@ -22,14 +22,7 @@ const initialValues: RegistrationFormModel = {
 };
 
 const handleSubmit = (values: RegistrationFormModel) => {
-  RegisterPlayer(values)
-    .then(() => {
-      history.push(routes.gameBoard);
-    })
-    .catch((error) => {
-      //TODO: add error handler
-      console.log(error);
-    });
+  engine.registerPlayer(values);
 };
 
 export const RegistrationForm: React.FC = () => {

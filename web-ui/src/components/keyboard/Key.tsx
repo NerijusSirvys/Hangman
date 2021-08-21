@@ -1,14 +1,13 @@
 import React from "react";
-import { ProcessGuess } from "./ProcessGuess.logic";
+import { engine } from "../../app/services/engine";
 
 interface KeyProps {
   letter: string;
 }
 
 const handleClick = (e: any, letter: string) => {
-  // disable clicked letter
-  e.target.classList.add("used");
-  ProcessGuess(letter);
+  engine.disableKey(e);
+  engine.processGuess(letter);
 };
 
 export const Key: React.FC<KeyProps> = (props) => {

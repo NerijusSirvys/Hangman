@@ -1,8 +1,8 @@
 import React from "react";
-import { levelService } from "../../app/services/levelService";
+import { engine } from "../../app/services/engine";
 
 const handleClick = () => {
-  levelService.loadLevel(true);
+  engine.loadNewLevel();
 };
 
 interface MessageProps {

@@ -1,10 +1,9 @@
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import { Link } from "react-router-dom";
 import * as Yup from "yup";
-import { history } from "../..";
 import { routes } from "../../app/routes/routes";
+import { engine } from "../../app/services/engine";
 import { FormModel } from "../../interfaces/FormModel";
-import { LoginPlayer } from "./LoginPlayer.logic";
 
 const validationSchema = Yup.object({
   username: Yup.string().required("Username required"),
@@ -17,9 +16,7 @@ const initialValues = {
 };
 
 const handleSubmit = (loginValues: FormModel) => {
-  LoginPlayer(loginValues).then(() => {
-    history.push(routes.gameBoard);
-  });
+  engine.loginPlayer(loginValues);
 };
 
 export const LoginForm: React.FC = () => {

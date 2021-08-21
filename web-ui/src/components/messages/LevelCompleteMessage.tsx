@@ -1,15 +1,16 @@
+import React from "react";
 import { engine } from "../../app/services/engine";
 
 const handleClick = () => {
-  engine.restart();
+  engine.loadNewLevel();
 };
 
-export const GameOverMessage: React.FC = () => {
+export const LevelCompleteMessage: React.FC = () => {
   return (
     <div className="message">
-      <h2 className="title">Game Over...</h2>
+      <h2 className="title">Level complete...</h2>
       <p className="button" onClick={handleClick}>
-        Click to restart
+        Click to continue
       </p>
     </div>
   );

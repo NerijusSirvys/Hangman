@@ -3,6 +3,7 @@ import { RootState } from "../../app/store";
 import { HintsContainer } from "../hints/HintsContainer";
 import { Keyboard } from "../keyboard/Keyboard";
 import { GameOverMessage } from "../messages/GameOverMessage";
+import { LoadingMessage } from "../messages/LoadingMessage";
 import { Message } from "../messages/Message";
 import { Quiz } from "../quiz/Quiz";
 
@@ -12,7 +13,7 @@ const PlayArea: React.FC = () => {
   const isGameOver = useSelector((state: RootState) => state.game.availableGuesses === 0);
 
   if (isLoading) {
-    return <Message message="Loading..." />;
+    return <LoadingMessage />;
   }
 
   if (isLevelComplete) {

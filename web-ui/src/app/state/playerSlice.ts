@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Player } from "../../interfaces/Player";
+import store from "../store";
 
 interface PlayerState extends Player {}
 
@@ -15,13 +16,13 @@ const playerSlice = createSlice({
   name: "player",
   initialState: initialState,
   reducers: {
-    player_loadPlayer: (state, action: PayloadAction<Player>) => {
+    loadPlayer: (state, action: PayloadAction<Player>) => {
       return action.payload;
     },
-    player_addStars: (state, action: PayloadAction<number>) => {
+    addStars: (state, action: PayloadAction<number>) => {
       state.stars += action.payload;
     },
-    player_removeStars: (state, action: PayloadAction<number>) => {
+    removeStars: (state, action: PayloadAction<number>) => {
       if (state.stars < action.payload) {
         state.stars = 0;
         return;
@@ -29,20 +30,13 @@ const playerSlice = createSlice({
 
       state.stars -= action.payload;
     },
-    player_addScore: (state, action: PayloadAction<number>) => {
-      state.gameScore += action.payload;
-    },
-    player_incrementCompleteLevel: (state) => {
+    processLevelCompletion: (state, action: PayloadAction<number>) => {
       state.completeLevels++;
+      state.gameScore += action.payload;
     },
   },
 });
 
-export const {
-  player_loadPlayer,
-  player_addStars,
-  player_addScore,
-  player_incrementCompleteLevel,
-  player_removeStars,
-} = playerSlice.actions;
+export const { loadPlayer, addStars, processLevelCompletion, removeStars } = playerSlice.actions;
+
 export default playerSlice.reducer;
