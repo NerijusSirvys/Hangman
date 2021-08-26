@@ -46,22 +46,8 @@ namespace API.Seeder
             return output;
         }
 
-        public async Task SeedData(HangmanDbContext context, UserManager<Player> userManager)
+        public void SeedData(HangmanDbContext context)
         {
-            if (!userManager.Users.Any())
-            {
-                var player = new Player
-                {
-                    Id = Guid.NewGuid().ToString(),
-                    UserName = "DemoGuy",
-                    Levels = new List<AsignedLevel>(),
-                    Score = 125,
-                    Stars = 30
-                };
-
-                await userManager.CreateAsync(player, "pa$$w0rd");
-            }
-
             if (context.Levels.Any()) return;
 
             context.Levels.AddRange(VeryEasyLevels);

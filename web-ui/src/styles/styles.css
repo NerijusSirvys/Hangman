@@ -22,17 +22,15 @@
 **************/
 :root {
   --main-color: #c0c4c9;
-  --base-font-size: 17px;
+  --base-font-size: clamp(12px, 1.5vw, 17px);
   --button-padding: 0.5rem 0.7rem;
-}
-
-html {
-  font-size: calc(60% + 0.8vmin);
 }
 
 * {
   font-size: var(--base-font-size);
   font-family: "Patrick Hand SC", cursive;
+  margin: 0;
+  padding: 0;
 }
 
 body {
@@ -49,10 +47,6 @@ body {
 button {
   background-color: transparent;
   color: var(--main-color);
-}
-
-p {
-  margin: 0;
 }
 
 ul {
@@ -115,19 +109,33 @@ a:hover {
   background: url(/src/images/black_board.svg);
   background-position: center;
   background-size: cover;
-  height: 100vh;
-  max-height: 650px;
-  width: 100vw;
-  max-width: 1300px;
+  max-width: 1200px;
+  min-width: 575px;
+  width: 90vw;
   display: grid;
   grid-template-columns: auto 230px;
-  grid-template-rows: 75px auto;
+  grid-template-rows: 10% 90%;
   padding: 40px;
-  position: relative;
+  aspect-ratio: 2/1;
 }
 
-/* Home Page
-*****************/
+@media only screen and (max-width: 990px) {
+  .game-board {
+    grid-template-columns: auto 160px;
+  }
+
+  section {
+    padding: 7px;
+  }
+}
+
+@media only screen and (max-width: 755px) {
+  .game-board {
+    aspect-ratio: initial;
+  }
+}
+
+/* Home Page *****************/
 .home-page {
   grid-column: 1/-1;
   grid-row: 1/-1;
@@ -166,6 +174,7 @@ a:hover {
   display: flex;
   flex-direction: column;
   gap: 2rem;
+  min-width: 200px;
   width: 25%;
 }
 
@@ -203,8 +212,6 @@ a:hover {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 100%;
-  margin-top: 1.5rem;
 }
 
 .keyboard-row {
@@ -227,8 +234,7 @@ a:hover {
 /* Hints
 *************/
 .hint {
-  padding: 0.3rem 0;
-  margin: 10px 0;
+  margin: 0.5rem 0;
   display: flex;
   align-items: center;
   gap: 2rem;
@@ -268,6 +274,7 @@ a:hover {
 .quiz-container .clue {
   font-size: 1.3rem;
   text-align: center;
+  margin: 0.5rem 0;
 }
 
 /* question mark icons */
@@ -294,7 +301,6 @@ h3 svg {
 
 /* Header
 **************/
-
 .header {
   display: flex;
   justify-content: space-between;
@@ -306,6 +312,7 @@ h3 svg {
 
 .header .username {
   font-size: 2rem;
+  align-self: center;
 }
 
 .header .links {

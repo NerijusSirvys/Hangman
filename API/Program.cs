@@ -27,7 +27,7 @@ namespace API
                 var context = services.GetRequiredService<HangmanDbContext>();
                 var userManager = services.GetRequiredService<UserManager<Player>>();
                 await context.Database.MigrateAsync();
-                await new Seed().SeedData(context, userManager);
+                new Seed().SeedData(context);
             }
             catch (Exception ex)
             {
