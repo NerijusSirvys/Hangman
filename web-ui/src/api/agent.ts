@@ -1,62 +1,35 @@
 import { CompleteLevelModel } from "../interfaces/CompleteLevelModel";
 import { FormModel } from "../interfaces/FormModel";
+import { LeaderboardEntry } from "../interfaces/LeaderboardEntry";
 import { Level } from "../interfaces/Level";
 import { Login } from "../interfaces/Login";
 import { Player } from "../interfaces/Player";
 import { request } from "./agentConfig";
 
 const accountService = {
-  loginAsync: async (body: FormModel) => {
-    return await request.post<Login>("account/login", body);
-  },
-
-  registerAsync: async (body: FormModel) => {
-    return await request.post<Login>("account/register", body);
-  },
+  loginAsync: (body: FormModel) => request.post<Login>("account/login", body),
+  registerAsync: (body: FormModel) => request.post<Login>("account/register", body),
 };
 
 const levelService = {
-  getLevelAsync: async () => {
-    return await request.get<Level>("game/level");
-  },
-
-  restartAsync: async () => {
-    return await request.get<Level>("game/restart");
-  },
-
-  showHintAsync: async (hintId: string) => {
-    return await request.post("Game/showHint", { hintId: hintId });
-  },
+  getLevelAsync: () => request.get<Level>("game/level"),
+  restartAsync: () => request.get<Level>("game/restart"),
+  showHintAsync: (hintId: string) => request.post("Game/showHint", { hintId: hintId }),
 };
 
 const playerService = {
-  getCurrentPlayerAsync: async () => {
-    return await request.get<Player>("account/getplayer");
-  },
+  getCurrentPlayerAsync: () => request.get<Player>("account/getplayer"),
+  processCompleteLevel: (data: CompleteLevelModel) => request.post("game/prosesscompleteLevel", data),
+  removeStarsAsync: (stars: number) => request.post("game/removestars", { deduction: stars }),
+};
 
-  addStarsAsync: async (stars: number) => {
-    await request.post<number>("game/addstars", { reward: stars });
-  },
-
-  addGameScoreAsync: async (score: number) => {
-    await request.post<number>("game/addgamescore", { reward: score });
-  },
-
-  addCompleteLevelsAsync: async (levelId: string) => {
-    await request.get("game/completelevel");
-  },
-
-  processCompleteLevel: async (data: CompleteLevelModel) => {
-    await request.post<CompleteLevelModel>("game/prosesscompleteLevel", data);
-  },
-
-  removeStarsAsync: async (stars: number) => {
-    await request.post<number>("game/removestars", { deduction: stars });
-  },
+const gameService = {
+  getLeaderboardData: () => request.get<LeaderboardEntry[]>("game/leaderboard"),
 };
 
 export const agent = {
   accountService,
   playerService,
   levelService,
+  gameService,
 };

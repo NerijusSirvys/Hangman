@@ -9,6 +9,8 @@ import { Player } from "../interfaces/Player";
 // base api URL
 axios.defaults.baseURL = "https://localhost:5001/api/";
 
+const responseBody = <T>(response: AxiosResponse<T>) => response.data;
+
 // configure axios to send auth toked with every request
 axios.interceptors.request.use((config) => {
   const token = window.localStorage.getItem("token");
@@ -53,6 +55,6 @@ const headers = {
 };
 
 export const request = {
-  get: <T>(url: string) => axios.get<T>(url),
-  post: <T>(url: string, body: {}) => axios.post<T>(url, body, headers),
+  get: <T>(url: string) => axios.get<T>(url).then(responseBody),
+  post: <T>(url: string, body: {}) => axios.post<T>(url, body, headers).then(responseBody),
 };

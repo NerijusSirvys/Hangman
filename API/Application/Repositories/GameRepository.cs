@@ -128,6 +128,11 @@
             await _context.SaveChangesAsync();
         }
 
+        public async Task<List<Player>> GetLeaderboard()
+        {
+            return await _context.Players.OrderByDescending(x=>x.Score).ToListAsync();
+        }
+
         /// <summary>
         /// Create a colleciton of hints that player owns
         /// </summary>
@@ -211,7 +216,5 @@
 
             return levelsToDo[index];
         }
-
-
     }
 }

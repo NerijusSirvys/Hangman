@@ -1,4 +1,6 @@
 import { useSelector } from "react-redux";
+import { history } from "../..";
+import { routes } from "../../app/routes/routes";
 import { engine } from "../../app/services/engine";
 import { RootState } from "../../app/store";
 
@@ -13,8 +15,10 @@ export const Header: React.FC = () => {
     <header className="header">
       <p className="username">{username}</p>
       <div className="links">
-        <p className="button ">Leader Board</p>
-        <p className="button " onClick={handleClick}>
+        <p className="button" onClick={() => history.push(routes.leaderboard)}>
+          Leader Board
+        </p>
+        <p className="button" onClick={handleClick}>
           Log out
         </p>
       </div>

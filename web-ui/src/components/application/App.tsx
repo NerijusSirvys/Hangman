@@ -13,6 +13,7 @@ import { NotFound } from "../errors/NotFound";
 import { ServerError } from "../errors/ServerError";
 import { Unauthorized } from "../errors/Unauthorized";
 import { engine } from "../../app/services/engine";
+import { Leaderboard } from "../leaderboard/Leaderboard";
 
 function App() {
   const isLevelComplete = useSelector((state: RootState) => state.level.isComplete);
@@ -44,6 +45,8 @@ function App() {
           <Route path={routes.login} component={LoginForm} />
           <Route path={routes.serverError} component={isErrorSet ? ServerError : NotFound} />
           <Route path={routes.gameBoard} component={isLogedIn ? GameBoard : Unauthorized} />
+          <Route path={routes.leaderboard} component={isLogedIn ? Leaderboard : Unauthorized} />
+
           <Route component={NotFound} />
         </Switch>
       </main>

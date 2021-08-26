@@ -8,11 +8,12 @@ namespace API.Repositories
     public interface IRepository
     {
 
-        public Task<AsignedLevel> GetLevelAsync(string playerId);
+        Task<AsignedLevel> GetLevelAsync(string playerId);
         Task<Player> GetPlayerByIdAsync(string playerId);
         Task RemoveStarsAsync(string playerId, int deduction);
         Task ShowNewHint(string hintId, string playerId);
         Task ProcessCompleteLevel(string playerId, int stars, int gameScore);
         Task ResetLevel(string playerId);
+        Task<List<Player>> GetLeaderboard();
     }
 }

@@ -4,6 +4,7 @@ const routes = {
   register: "/register",
   gameBoard: "/game-board",
   serverError: "/server-error",
+  leaderboard: "/leaderboard",
 };
 
 export { routes };

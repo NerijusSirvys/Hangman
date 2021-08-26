@@ -13,6 +13,7 @@
 /*    11. Play Area         */
 /*    12. Sidebar           */
 /*    13. Hangman Image     */
+/*    14. Leaderboard       */
 /*==========================*/
 /*==========================*/
 /*==========================*/
@@ -25,6 +26,10 @@
   --button-padding: 0.5rem 0.7rem;
 }
 
+html {
+  font-size: calc(60% + 0.8vmin);
+}
+
 * {
   font-size: var(--base-font-size);
   font-family: "Patrick Hand SC", cursive;
@@ -33,6 +38,11 @@
 body {
   color: var(--main-color);
   margin: 0;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   background-color: #525252;
 }
 
@@ -50,7 +60,6 @@ ul {
 }
 
 #root {
-  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -107,7 +116,6 @@ a:hover {
   background-position: center;
   background-size: cover;
   height: 100vh;
-  min-height: 600px;
   max-height: 650px;
   width: 100vw;
   max-width: 1300px;
@@ -133,6 +141,7 @@ a:hover {
 
 .home-page .title {
   font-size: 2.3rem;
+  text-align: center;
 }
 
 .home-page .button-row {
@@ -219,6 +228,7 @@ a:hover {
 *************/
 .hint {
   padding: 0.3rem 0;
+  margin: 10px 0;
   display: flex;
   align-items: center;
   gap: 2rem;
@@ -257,6 +267,7 @@ a:hover {
 
 .quiz-container .clue {
   font-size: 1.3rem;
+  text-align: center;
 }
 
 /* question mark icons */
@@ -362,4 +373,64 @@ h3 svg {
 .hangman img {
   width: 100%;
   height: auto;
+}
+
+/* Leaderboard
+*******************/
+.leaderboard {
+  grid-column: 1/-1;
+  grid-row: 1/-1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+table {
+  height: 100px;
+  text-align: center;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+thead {
+  display: block;
+}
+
+tbody {
+  display: block;
+  overflow: auto;
+  height: 200px;
+  width: 100%;
+}
+
+tbody tr {
+  line-height: 30px;
+  width: 100%;
+}
+
+thead tr th {
+  border-bottom: 3px solid var(--main-color);
+  padding-bottom: 15px;
+}
+
+th,
+td {
+  width: 225px;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #b3afb3;
+  border-radius: 9px;
+  height: 25px;
+}
+
+.leaderboard .button {
+  display: inline-block;
+  margin-top: 25px;
 }

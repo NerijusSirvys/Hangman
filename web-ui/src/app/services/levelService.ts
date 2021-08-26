@@ -1,14 +1,13 @@
-import { AxiosPromise, AxiosResponse } from "axios";
 import { agent } from "../../api/agent";
 import { Level } from "../../interfaces/Level";
 import { gameState, levelState } from "../state/stateService";
 
-const loadLevelBase = async (axiosCall: AxiosPromise) => {
+const loadLevelBase = async (promise: Promise<Level>) => {
   const initialDelay = 1000;
   const timeBeforeLoading = Date.now();
 
-  axiosCall.then((response: AxiosResponse<Level>) => {
-    levelState.loadLevel(response.data);
+  promise.then((response) => {
+    levelState.loadLevel(response);
     const timeAfterLoading = Date.now();
     const loadingTime = timeAfterLoading - timeBeforeLoading;
     let delay = initialDelay - loadingTime;
@@ -26,7 +25,7 @@ export const levelService = {
     });
   },
 
-  loadLevel: async () => await loadLevelBase(agent.levelService.getLevelAsync()),
+  loadLevel: () => loadLevelBase(agent.levelService.getLevelAsync()),
 
-  restartLevel: async () => await loadLevelBase(agent.levelService.restartAsync()),
+  restartLevel: () => loadLevelBase(agent.levelService.restartAsync()),
 };

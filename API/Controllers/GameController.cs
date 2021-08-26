@@ -1,8 +1,11 @@
-﻿using Api.Responses;
+﻿using Api.Models;
+using Api.Responses;
 using API.Repositories;
 using API.Requests;
+using API.Responses;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
@@ -81,6 +84,14 @@ namespace Api.Controllers
 
             return Ok(new LevelResponse().Map(level));
 
+        }
+
+        [HttpGet("leaderboard")]
+        public async Task<IActionResult> Leaderboard()
+        {
+            List<Player> players = await _repository.GetLeaderboard();
+
+            return Ok(new LeaderboardResponse().Map(players));
         }
 
 

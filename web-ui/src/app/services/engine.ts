@@ -1,9 +1,7 @@
-import { AxiosResponse } from "axios";
 import { history } from "../..";
 import { agent } from "../../api/agent";
 import { CompleteLevelModel } from "../../interfaces/CompleteLevelModel";
 import { FormModel } from "../../interfaces/FormModel";
-import { Login } from "../../interfaces/Login";
 import { RegistrationFormModel } from "../../interfaces/RegistrationFormModel";
 import { routes } from "../routes/routes";
 import { gameState, levelState, playerSate, sessionState } from "../state/stateService";
@@ -46,9 +44,9 @@ const updatedMaskedSecret = (letter: string, secret: string): number => {
 
 export const engine = {
   loginPlayer: (values: FormModel) => {
-    agent.accountService.loginAsync(values).then((response: AxiosResponse<Login>) => {
-      playerSate.loadPlayer(response.data.data);
-      userSession.loginSession(response.data.token);
+    agent.accountService.loginAsync(values).then((response) => {
+      playerSate.loadPlayer(response.data);
+      userSession.loginSession(response.token);
       levelService.loadLevel().then(() => {
         history.push(routes.gameBoard);
       });
@@ -79,11 +77,11 @@ export const engine = {
   },
 
   registerPlayer: (values: RegistrationFormModel) => {
-    agent.accountService.registerAsync(values).then((response: AxiosResponse<Login>) => {
+    agent.accountService.registerAsync(values).then((response) => {
       gameState.isLoading(true);
-      playerSate.loadPlayer(response.data.data);
+      playerSate.loadPlayer(response.data);
       levelService.loadLevel();
-      userSession.loginSession(response.data.token);
+      userSession.loginSession(response.token);
       history.push(routes.gameBoard);
     });
   },
@@ -102,6 +100,10 @@ export const engine = {
       gameState.processCorrectGuess(correctLetters);
       playerSate.addStars(level.starReward);
     }
+  },
+
+  getLeaderboard: async () => {
+    return await agent.gameService.getLeaderboardData();
   },
 
   restart: () => {
