@@ -2,7 +2,6 @@ import { ErrorMessage, Field, Form, Formik } from "formik";
 import React from "react";
 import { Link } from "react-router-dom";
 import * as Yup from "yup";
-import { history } from "../..";
 import { routes } from "../../app/routes/routes";
 import { engine } from "../../app/services/engine";
 import { RegistrationFormModel } from "../../interfaces/RegistrationFormModel";
@@ -63,7 +62,7 @@ export const RegistrationForm: React.FC = () => {
             Back
           </Link>
           <button className="button" type="submit">
-            Submit
+            Register
           </button>
         </div>
       </Form>

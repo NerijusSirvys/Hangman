@@ -3,6 +3,7 @@ import { RootState } from "../../app/store";
 import { HintsContainer } from "../hints/HintsContainer";
 import { Keyboard } from "../keyboard/Keyboard";
 import { GameOverMessage } from "../messages/GameOverMessage";
+import { LevelCompleteMessage } from "../messages/LevelCompleteMessage";
 import { LoadingMessage } from "../messages/LoadingMessage";
 import { Message } from "../messages/Message";
 import { Quiz } from "../quiz/Quiz";
@@ -17,7 +18,7 @@ const PlayArea: React.FC = () => {
   }
 
   if (isLevelComplete) {
-    return <Message message="Level Complete..." button={true} />;
+    return <LevelCompleteMessage />;
   }
 
   if (isGameOver) {

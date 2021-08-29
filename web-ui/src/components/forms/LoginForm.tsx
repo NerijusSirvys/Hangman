@@ -47,7 +47,7 @@ export const LoginForm: React.FC = () => {
             Back
           </Link>
           <button className="button" type="submit">
-            Submit
+            Log in
           </button>
         </div>
       </Form>

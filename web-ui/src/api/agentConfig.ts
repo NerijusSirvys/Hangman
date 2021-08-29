@@ -7,7 +7,7 @@ import { Level } from "../interfaces/Level";
 import { Player } from "../interfaces/Player";
 
 // base api URL
-axios.defaults.baseURL = "https://localhost:5001/api/";
+axios.defaults.baseURL = process.env.REACT_APP_API_URL;
 
 const responseBody = <T>(response: AxiosResponse<T>) => response.data;
 
