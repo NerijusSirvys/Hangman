@@ -6,7 +6,7 @@ Web implementation of classic Hangman Game.
 - Entity Framework Core
 - React
 - SQL Server
-- Valila CSS
+- Vanila CSS
 
 ## How it works:
 First thing you Player will see is the home page.
