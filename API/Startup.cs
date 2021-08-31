@@ -26,7 +26,7 @@ namespace API
 
             services.AddIdentityServices(Configuration);
 
-            services.AddDbContext<HangmanDbContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("HangmanConnection")));
+            services.AddDbContext<HangmanDbContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("Hangman")));
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
