@@ -1,3 +1,6 @@
 {
-  "editor.wordWrap": "wordWrapColumn"
+  "editor.wordWrap": "wordWrapColumn",
+  "appService.showBuildDuringDeployPrompt": false,
+  "appService.defaultWebAppToDeploy": "/subscriptions/0c2a0e7b-d5a8-4302-9a40-24a69a57322d/resourceGroups/HangmanResources/providers/Microsoft.Web/sites/MyHangmanGame",
+  "appService.deploySubpath": "build"
 }

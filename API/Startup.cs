@@ -26,7 +26,7 @@ namespace API
 
             services.AddIdentityServices(Configuration);
 
-            services.AddDbContext<HangmanDbContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("Hangman")));
+            services.AddDbContext<HangmanDbContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("HangmanConnection")));
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
@@ -63,7 +63,6 @@ namespace API
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
-                endpoints.MapFallbackToController("Index", "Fallback");
             });
         }
     }

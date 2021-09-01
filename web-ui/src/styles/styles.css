@@ -112,6 +112,7 @@ a:hover {
   max-width: 1200px;
   min-width: 575px;
   height: 85vh;
+  max-height: 600px;
   display: grid;
   grid-template-columns: auto 230px;
   grid-template-rows: 10% 90%;
