@@ -4,9 +4,14 @@ Web implementation of classic Hangman Game.
 ## Used Technologies:
 - ASP 5 Web API 
 - Entity Framework Core
-- React
+- React + Redux
 - SQL Server
-- Vanila CSS
+- Vanilla CSS
+
+## Live version:
+https://myhangmangame.azurewebsites.net/
+
+<br>
 
 ## How it works:
 First thing you Player will see is the home page.
