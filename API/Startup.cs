@@ -50,9 +50,9 @@ namespace API
 
             app.UseRouting();
 
-            app.UseDefaultFiles();
+            //app.UseDefaultFiles();
 
-            app.UseStaticFiles();
+            //app.UseStaticFiles();
 
             app.UseCors("CORSPolicy");
 

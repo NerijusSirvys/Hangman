@@ -87,7 +87,7 @@ export const engine = {
   },
 
   disableKey: (e: any) => {
-    e.target.classList.add("used");
+    gameState.disableKey(e.target.innerText);
   },
 
   processGuess: (letter: string) => {

@@ -3,6 +3,7 @@ import { engine } from "../../app/services/engine";
 
 interface KeyProps {
   letter: string;
+  isDisabled: boolean;
 }
 
 const handleClick = (e: any, letter: string) => {
@@ -11,10 +12,12 @@ const handleClick = (e: any, letter: string) => {
 };
 
 export const Key: React.FC<KeyProps> = (props) => {
-  const { letter } = props;
+  const { letter, isDisabled } = props;
+
+  const classes = `key-letter button ${!isDisabled && "used"}`;
 
   return (
-    <p className="key-letter button" onClick={(e) => handleClick(e, letter)}>
+    <p className={classes} onClick={(e) => handleClick(e, letter)}>
       {letter}
     </p>
   );

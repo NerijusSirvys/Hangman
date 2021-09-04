@@ -3,7 +3,7 @@ import { Player } from "../../interfaces/Player";
 import { ServerError } from "../../interfaces/ServerError";
 import store from "../store";
 import { setError } from "./errorSlice";
-import { reset, isLoading, resetFailedGuesses, processFailedGuess, processCorrectGuess } from "./gameSlice";
+import { reset, isLoading, resetFailedGuesses, processFailedGuess, processCorrectGuess, disableKey } from "./gameSlice";
 import { showHint, loadLevel, updateMask } from "./levelSlice";
 import { addStars, loadPlayer, removeStars, processLevelCompletion } from "./playerSlice";
 import { login, logout } from "./sessionSlice";
@@ -14,6 +14,7 @@ export const gameState = {
   resetFailedGuesses: () => store.dispatch(resetFailedGuesses()),
   processFailedGuess: () => store.dispatch(processFailedGuess()),
   processCorrectGuess: (guesses: number) => store.dispatch(processCorrectGuess(guesses)),
+  disableKey: (key: string) => store.dispatch(disableKey(key)),
 };
 
 export const errorState = {
