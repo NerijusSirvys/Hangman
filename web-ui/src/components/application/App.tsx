@@ -22,6 +22,9 @@ function App() {
 
   // handle player re-log and level loading when browser is refreshed
   useEffect(() => {
+    // local storage for token that was saved using previous versions of applications
+    localStorage.clear();
+
     if (isLogedIn) {
       engine.returnPlayer();
     }

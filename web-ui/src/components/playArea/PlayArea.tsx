@@ -5,7 +5,6 @@ import { Keyboard } from "../keyboard/Keyboard";
 import { GameOverMessage } from "../messages/GameOverMessage";
 import { LevelCompleteMessage } from "../messages/LevelCompleteMessage";
 import { LoadingMessage } from "../messages/LoadingMessage";
-import { Message } from "../messages/Message";
 import { Quiz } from "../quiz/Quiz";
 
 const PlayArea: React.FC = () => {

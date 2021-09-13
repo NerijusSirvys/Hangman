@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 namespace Api.Controllers
 {
     [Authorize]
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class GameController : ControllerBase
     {

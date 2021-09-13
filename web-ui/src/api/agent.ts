@@ -14,7 +14,7 @@ const accountService = {
 const levelService = {
   getLevelAsync: () => request.get<Level>("/game/level"),
   restartAsync: () => request.get<Level>("/game/restart"),
-  showHintAsync: (hintId: string) => request.post("/Game/showHint", { hintId: hintId }),
+  showHintAsync: (hintId: string) => request.post("/game/showHint", { hintId: hintId }),
 };
 
 const playerService = {

@@ -13,9 +13,9 @@ const responseBody = <T>(response: AxiosResponse<T>) => response.data;
 
 // configure axios to send auth toked with every request
 axios.interceptors.request.use((config) => {
-  const token = window.localStorage.getItem("token");
+  const token = window.sessionStorage.getItem("token");
 
-  if (token != null) {
+  if (token !== null) {
     config.headers.Authorization = `Bearer ${token}`;
   }
 

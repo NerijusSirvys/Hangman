@@ -1,9 +1,9 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import gameReducer from "./state//gameSlice";
 import sessionReducer from "./state//sessionSlice";
+import errorReducer from "./state/errorSlice";
 import levelReducer from "./state/levelSlice";
 import playerReducer from "./state/playerSlice";
-import errorReducer from "./state/errorSlice";
 
 const rootReducers = combineReducers({
   level: levelReducer,

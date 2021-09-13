@@ -1,0 +1,32 @@
+{
+  "files": {
+    "main.css": "/static/css/main.8030b540.chunk.css",
+    "main.js": "/static/js/main.46a23fb1.chunk.js",
+    "main.js.map": "/static/js/main.46a23fb1.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.6b660841.js",
+    "runtime-main.js.map": "/static/js/runtime-main.6b660841.js.map",
+    "static/css/2.a6b4f367.chunk.css": "/static/css/2.a6b4f367.chunk.css",
+    "static/js/2.bf90c4a3.chunk.js": "/static/js/2.bf90c4a3.chunk.js",
+    "static/js/2.bf90c4a3.chunk.js.map": "/static/js/2.bf90c4a3.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/2.a6b4f367.chunk.css.map": "/static/css/2.a6b4f367.chunk.css.map",
+    "static/css/main.8030b540.chunk.css.map": "/static/css/main.8030b540.chunk.css.map",
+    "static/js/2.bf90c4a3.chunk.js.LICENSE.txt": "/static/js/2.bf90c4a3.chunk.js.LICENSE.txt",
+    "static/media/styles.css": "/static/media/black_board.8a0fce21.svg",
+    "static/media/hangman-0.dc6d25b0.png": "/static/media/hangman-0.dc6d25b0.png",
+    "static/media/hangman-1.87eeefc7.png": "/static/media/hangman-1.87eeefc7.png",
+    "static/media/hangman-2.9c1d99b6.png": "/static/media/hangman-2.9c1d99b6.png",
+    "static/media/hangman-3.42b06d99.png": "/static/media/hangman-3.42b06d99.png",
+    "static/media/hangman-4.94dd341e.png": "/static/media/hangman-4.94dd341e.png",
+    "static/media/hangman-5.3b80d7c0.png": "/static/media/hangman-5.3b80d7c0.png",
+    "static/media/hangman-6.7018a2f6.png": "/static/media/hangman-6.7018a2f6.png",
+    "static/media/mask.a547bb3d.svg": "/static/media/mask.a547bb3d.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.6b660841.js",
+    "static/css/2.a6b4f367.chunk.css",
+    "static/js/2.bf90c4a3.chunk.js",
+    "static/css/main.8030b540.chunk.css",
+    "static/js/main.46a23fb1.chunk.js"
+  ]
+}
